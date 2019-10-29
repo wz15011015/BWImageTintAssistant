@@ -12,16 +12,19 @@ let RColor = RGBColor(211, 57, 53)
 let GColor = RGBColor(28, 147, 76)
 let BColor = RGBColor(60, 116, 242)
 
-let RAColor = RGBAColor(211, 57, 53, 0.3)
-let GAColor = RGBAColor(28, 147, 76, 0.3)
-let BAColor = RGBAColor(60, 116, 242, 0.3)
+//let RAColor = RGBAColor(211, 57, 53, 0.3)
+//let GAColor = RGBAColor(28, 147, 76, 0.3)
+//let BAColor = RGBAColor(60, 116, 242, 0.3)
 
 class ITARGBInputView: UIView {
     
     private lazy var rgbLabel: UILabel = {
         let label = UILabel()
-        label.text = "RGB:"
         label.font = UIFont.systemFont(ofSize: 20)
+        label.text = "RGB:"
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        }
         return label
     }()
     
@@ -35,6 +38,17 @@ class ITARGBInputView: UIView {
         textField.tintColor = RColor
         textField.textColor = RColor
         textField.clearButtonMode = .whileEditing
+
+        var RAColor = RGBAColor(211, 57, 53, 0.3)
+        if #available(iOS 13.0, *) {
+            RAColor = UIColor.init { (_ traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return RGBAColor(211, 57, 53, 0.4)
+                } else {
+                    return RGBAColor(211, 57, 53, 0.3)
+                }
+            }
+        }
         textField.attributedPlaceholder = NSAttributedString.init(string: "0~255", attributes: [NSAttributedString.Key.foregroundColor : RAColor])
         return textField
     }()
@@ -49,6 +63,17 @@ class ITARGBInputView: UIView {
         textField.tintColor = GColor
         textField.textColor = GColor
         textField.clearButtonMode = .whileEditing
+        
+        var GAColor = RGBAColor(28, 147, 76, 0.3)
+        if #available(iOS 13.0, *) {
+            GAColor = UIColor.init { (_ traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return RGBAColor(28, 147, 76, 0.4)
+                } else {
+                    return RGBAColor(28, 147, 76, 0.3)
+                }
+            }
+        }
         textField.attributedPlaceholder = NSAttributedString.init(string: "0~255", attributes: [NSAttributedString.Key.foregroundColor : GAColor])
         return textField
     }()
@@ -63,6 +88,17 @@ class ITARGBInputView: UIView {
         textField.tintColor = BColor
         textField.textColor = BColor
         textField.clearButtonMode = .whileEditing
+        
+        var BAColor = RGBAColor(60, 116, 242, 0.3)
+        if #available(iOS 13.0, *) {
+            BAColor = UIColor.init { (_ traitCollection: UITraitCollection) -> UIColor in
+                if traitCollection.userInterfaceStyle == .dark {
+                    return RGBAColor(60, 116, 242, 0.4)
+                } else {
+                    return RGBAColor(60, 116, 242, 0.3)
+                }
+            }
+        }
         textField.attributedPlaceholder = NSAttributedString.init(string: "0~255", attributes: [NSAttributedString.Key.foregroundColor : BAColor])
         return textField
     }()
@@ -314,10 +350,8 @@ extension ITARGBInputView: UITextFieldDelegate {
             if text == "" {
                 red = 223; green = 126; blue = 31
     
-                redTextField.text = "223"
-                greenTextField.text = "126"
-                blueTextField.text = "31"
-                rgbHexTextField.text = "DF7E1F"
+                updateRGBTextField("223", "126", "31")
+                updateRGBHexTextField(red, green, blue)
 
                 // 执行回调
                 let color = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))

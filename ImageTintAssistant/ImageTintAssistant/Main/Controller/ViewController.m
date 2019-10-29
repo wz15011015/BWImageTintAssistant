@@ -57,7 +57,6 @@
     // 1. 原始图片
     self.originalImageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageViewX, NAVIGATION_BAR_HEIGHT, imageViewW, imageViewW)];
     self.originalImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.originalImageView.backgroundColor = RGBColor(251, 251, 251);
     self.originalImageView.userInteractionEnabled = YES;
     [self.view addSubview:self.originalImageView];
     
@@ -81,12 +80,31 @@
     // 4. 着色后图片
     self.tintedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageViewX, CGRectGetMaxY(self.tintButton.frame) + 20, imageViewW, imageViewW)];
     self.tintedImageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.tintedImageView.backgroundColor = RGBColor(251, 251, 251);
     self.tintedImageView.userInteractionEnabled = YES;
     [self.view addSubview:self.tintedImageView];
     
     UITapGestureRecognizer *tintTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tintImageTap:)];
     [self.tintedImageView addGestureRecognizer:tintTapGR];
+    
+    
+    // 颜色适配Dark Mode
+    if (@available(iOS 13.0, *)) {
+        self.view.backgroundColor = [UIColor systemBackgroundColor];
+        
+        UIColor *imageViewBackgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                return RGBColor(26, 28, 30);
+            } else {
+                return RGBColor(251, 251, 251);
+            }
+        }];
+        self.originalImageView.backgroundColor = imageViewBackgroundColor;
+        self.tintedImageView.backgroundColor = imageViewBackgroundColor;
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.originalImageView.backgroundColor = RGBColor(251, 251, 251);
+        self.tintedImageView.backgroundColor = RGBColor(251, 251, 251);
+    }
 }
 
 
