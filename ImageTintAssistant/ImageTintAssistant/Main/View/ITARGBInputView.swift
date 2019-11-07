@@ -182,9 +182,9 @@ class ITARGBInputView: UIView {
             red = Int(redHex)
             
         } else if text.count == 4 {
-            // 截取字符串
-            let redIndex = "xx".endIndex
-            let greenIndex = "xxxx".endIndex
+            // 截取字符串 (https://stackoverflow.com/questions/39677330/how-does-string-substring-work-in-swift)
+            let redIndex = text.index(text.startIndex, offsetBy: 2)
+            let greenIndex = text.index(text.startIndex, offsetBy: 4)
             let redHexStr = text[..<redIndex]
             let greenHexStr = text[redIndex..<greenIndex]
             // 16进制字符串转整型
@@ -196,9 +196,9 @@ class ITARGBInputView: UIView {
             
         } else if text.count == 6 {
             // 截取字符串
-            let redIndex = "xx".endIndex
-            let greenIndex = "xxxx".endIndex
-            let blueIndex = "xxxxxx".endIndex
+            let redIndex = text.index(text.startIndex, offsetBy: 2)
+            let greenIndex = text.index(text.startIndex, offsetBy: 4)
+            let blueIndex = text.endIndex
             let redHexStr = text[..<redIndex]
             let greenHexStr = text[redIndex..<greenIndex]
             let blueHexStr = text[greenIndex..<blueIndex]
