@@ -108,6 +108,40 @@
 }
 
 
+#pragma mark - Override
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    CGFloat screen_width = size.width;
+    CGFloat screen_height = size.height;
+    
+    // 更新控件位置
+    CGFloat originalImageViewY = screen_width > screen_height ? 0 : NAVIGATION_BAR_HEIGHT;
+    CGFloat space = screen_width > screen_height ? 10 : 20;
+    
+    CGRect originalImageViewFrame = self.originalImageView.frame;
+    originalImageViewFrame.origin.x = (screen_width - CGRectGetWidth(originalImageViewFrame)) / 2.0;
+    originalImageViewFrame.origin.y = originalImageViewY;
+    self.originalImageView.frame = originalImageViewFrame;
+
+    CGRect rgbViewFrame = self.rgbView.frame;
+    rgbViewFrame.origin.x = (screen_width - CGRectGetWidth(rgbViewFrame)) / 2.0;
+    rgbViewFrame.origin.y = CGRectGetMaxY(originalImageViewFrame) + space;
+    self.rgbView.frame = rgbViewFrame;
+    
+    CGRect tintButtonFrame = self.tintButton.frame;
+    tintButtonFrame.origin.x = (screen_width - CGRectGetWidth(tintButtonFrame)) / 2.0;
+    tintButtonFrame.origin.y = CGRectGetMaxY(rgbViewFrame) + 10;
+    self.tintButton.frame = tintButtonFrame;
+    
+    CGRect tintedImageViewFrame = self.tintedImageView.frame;
+    tintedImageViewFrame.origin.x = (screen_width - CGRectGetWidth(tintedImageViewFrame)) / 2.0;
+    tintedImageViewFrame.origin.y = CGRectGetMaxY(tintButtonFrame) + space;
+    self.tintedImageView.frame = tintedImageViewFrame;
+}
+
+
 #pragma mark - Events
 
 // 添加要着色图片事件
