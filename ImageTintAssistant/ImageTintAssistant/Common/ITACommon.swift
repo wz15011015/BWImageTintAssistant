@@ -128,11 +128,9 @@ func NotificationRemove(observer: Any, name: String) {
 
 // MARK: - 空值判断
 /// 字符串判空
-func StringIsEmpty(_ string: String!) -> Bool {
-    if string.isEmpty { // ""
-        return true
-    }
-    if string == nil {
+func StringIsEmpty(_ string: String?) -> Bool {
+    guard let string = string else { return true }
+    if string.isEmpty { // 包括: ""
         return true
     }
     if string == "(null)" || string == "<null>" {
@@ -141,41 +139,42 @@ func StringIsEmpty(_ string: String!) -> Bool {
     return false
 }
 
-/// 字符串判空,如果为空则返回""
-func StringConfirm(_ string: String) -> String {
-    return StringIsEmpty(string) ? "" : string
+/// 字符串判空,如果为空则返回 ""
+func StringConfirm(_ string: String?) -> String {
+    return StringIsEmpty(string) ? "" : string!
 }
 
 /// 数组判空
-func ArrayIsEmpty(_ array: [String]) -> Bool {
-    let str: String! = array.joined(separator: "")
-    if str == nil {
-        return true
-    }
-    if str == "(null)" || str == "<null>" {
-        return true
-    }
-    if array.isEmpty {
-        return true
-    }
-    return false
-}
+//func ArrayIsEmpty(_ array: [String]) -> Bool {
+//    if array.isEmpty {
+//        return true
+//    }
+//
+//    let str: String! = array.joined()
+//    if str == nil {
+//        return true
+//    }
+//    if str == "(null)" || str == "<null>" {
+//        return true
+//    }
+//    return false
+//}
 
 /// 字典判空
-func DictionaryIsEmpty(_ dictionary: NSDictionary) -> Bool {
-    let str: String! = "\(dictionary)"
-    if str == nil {
-        return true
-    }
-    if str == "(null)" || str == "<null>" {
-        return true
-    }
-    if dictionary.isKind(of: NSNull.self) {
-        return true
-    }
-    if dictionary.allKeys.count == 0 {
-        return true
-    }
-    return false
-}
-
+//func DictionaryIsEmpty(_ dictionary: NSDictionary) -> Bool {
+//    if dictionary.isKind(of: NSNull.self) {
+//        return true
+//    }
+//    if dictionary.allKeys.count == 0 {
+//        return true
+//    }
+//
+//    let str: String! = "\(dictionary)"
+//    if str == nil {
+//        return true
+//    }
+//    if str == "(null)" || str == "<null>" {
+//        return true
+//    }
+//    return false
+//}
