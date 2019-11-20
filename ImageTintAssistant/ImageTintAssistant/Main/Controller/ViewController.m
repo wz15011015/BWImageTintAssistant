@@ -159,6 +159,7 @@
     }
     // 2. 着色后图片
     self.tintImage = [self tintImage:self.originalImage tintColor:self.tintColor];
+//    self.tintImage = [self cornerImage:self.originalImage radius:240];
     // 显示着色后图片
     self.tintedImageView.image = self.tintImage;
     
@@ -227,7 +228,7 @@
     /**
      * size: 绘图的尺寸
      * opaque (不透明度): true 不透明 / false 透明
-     * scale (屏幕分辨率): 指定为0时,则默认使用当前设备的屏幕分辨率
+     * scale (屏幕分辨率): 指定为0时,则默认使用当前设备的屏幕分辨率,其他例如: 1.0f  2.0f  3.0f
      */
     UIGraphicsBeginImageContextWithOptions(size, NO, 1.0f);
     
@@ -247,6 +248,35 @@
     UIGraphicsEndImageContext();
     
     return tintedImage;
+}
+
+/** 给图片添加圆角 */
+- (UIImage *)cornerImage:(UIImage *)image radius:(CGFloat)radius {
+    CGSize size = image.size;
+    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
+    
+    // 1. 创建一个基于位图的上下文 (内存中开辟一块空间,和屏幕无关!)
+    /**
+     * size: 绘图的尺寸
+     * opaque (不透明度): true 不透明 / false 透明
+     * scale (屏幕分辨率): 指定为0时,则默认使用当前设备的屏幕分辨率,其他例如: 1.0f  2.0f  3.0f
+     */
+    UIGraphicsBeginImageContextWithOptions(size, NO, 1.0f);
+    
+    // 2. 绘制图像
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:radius];
+    // 使用BezierPath进行剪切
+    [path addClip];
+    // 绘制图像
+    [image drawInRect:bounds];
+    
+    // 3. 从图像上下文获取图像
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 4. 关闭图像上下文
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 

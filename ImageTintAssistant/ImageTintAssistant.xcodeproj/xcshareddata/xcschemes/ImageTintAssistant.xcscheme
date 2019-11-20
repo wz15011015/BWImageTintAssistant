@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06A115942137CAE300EB2F5E"
-               BuildableName = "ImageTintAssistant.app"
+               BuildableName = "&#x56fe;&#x6807;&#x7740;&#x8272;&#x52a9;&#x624b;.app"
                BlueprintName = "ImageTintAssistant"
                ReferencedContainer = "container:ImageTintAssistant.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06A115942137CAE300EB2F5E"
-            BuildableName = "ImageTintAssistant.app"
+            BuildableName = "&#x56fe;&#x6807;&#x7740;&#x8272;&#x52a9;&#x624b;.app"
             BlueprintName = "ImageTintAssistant"
             ReferencedContainer = "container:ImageTintAssistant.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06A115942137CAE300EB2F5E"
-            BuildableName = "ImageTintAssistant.app"
+            BuildableName = "&#x56fe;&#x6807;&#x7740;&#x8272;&#x52a9;&#x624b;.app"
             BlueprintName = "ImageTintAssistant"
             ReferencedContainer = "container:ImageTintAssistant.xcodeproj">
          </BuildableReference>

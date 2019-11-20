@@ -11,29 +11,35 @@
 		06A1159A2137CAE300EB2F5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A115992137CAE300EB2F5E /* AppDelegate.m */; };
 		06A115A02137CAE300EB2F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A1159E2137CAE300EB2F5E /* Main.storyboard */; };
 		06A115A52137CAE400EB2F5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A115A32137CAE400EB2F5E /* LaunchScreen.storyboard */; };
-		06A923CF2363E5C900198B28 /* ITACommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A923CE2363E5C900198B28 /* ITACommon.swift */; };
 		06A923D82363E67500198B28 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A923D32363E67500198B28 /* ViewController.m */; };
-		06A923D92363E67500198B28 /* ITARGBInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A923D72363E67500198B28 /* ITARGBInputView.swift */; };
 		06A923E42363E6D700198B28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A923DB2363E6D700198B28 /* main.m */; };
 		06A923E72363E6D700198B28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06A923DE2363E6D700198B28 /* Assets.xcassets */; };
+		06DB5FF8238519C900467586 /* ITACommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB5FF7238519C900467586 /* ITACommon.swift */; };
+		06DB5FFA238519E500467586 /* ITARGBInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB5FF9238519E400467586 /* ITARGBInputView.swift */; };
+		06DE4E602385286600F514B2 /* app_icon_template.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DE4E5F2385286600F514B2 /* app_icon_template.png */; };
+		06DE4E62238528C700F514B2 /* material_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DE4E61238528C700F514B2 /* material_icon.png */; };
+		06DE4E6423852BED00F514B2 /* app_icon_mac_template.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DE4E6323852BED00F514B2 /* app_icon_mac_template.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		066C8AAE2366E3C000D97D63 /* example_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_icon.png; sourceTree = "<group>"; };
-		06A115952137CAE300EB2F5E /* ImageTintAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageTintAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		06A115952137CAE300EB2F5E /* 图标着色助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "图标着色助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A115982137CAE300EB2F5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		06A115992137CAE300EB2F5E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		06A1159F2137CAE300EB2F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06A115A42137CAE400EB2F5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		06A923CD2363E56500198B28 /* ImageTintAssistant-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageTintAssistant-Bridging-Header.h"; sourceTree = "<group>"; };
-		06A923CE2363E5C900198B28 /* ITACommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
 		06A923D02363E5F300198B28 /* ITACommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITACommon.h; sourceTree = "<group>"; };
 		06A923D32363E67500198B28 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		06A923D42363E67500198B28 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		06A923D72363E67500198B28 /* ITARGBInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
 		06A923DB2363E6D700198B28 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		06A923DD2363E6D700198B28 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06A923DE2363E6D700198B28 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		06DB5FF7238519C900467586 /* ITACommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
+		06DB5FF9238519E400467586 /* ITARGBInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
+		06DB5FFB23851AAD00467586 /* ImageTintAssistant-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageTintAssistant-Bridging-Header.h"; sourceTree = "<group>"; };
+		06DE4E5F2385286600F514B2 /* app_icon_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_template.png; sourceTree = "<group>"; };
+		06DE4E61238528C700F514B2 /* material_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = material_icon.png; sourceTree = "<group>"; };
+		06DE4E6323852BED00F514B2 /* app_icon_mac_template.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_mac_template.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				066C8AAE2366E3C000D97D63 /* example_icon.png */,
+				06DE4E5F2385286600F514B2 /* app_icon_template.png */,
+				06DE4E6323852BED00F514B2 /* app_icon_mac_template.png */,
+				06DE4E61238528C700F514B2 /* material_icon.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -74,7 +83,7 @@
 		06A115962137CAE300EB2F5E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06A115952137CAE300EB2F5E /* ImageTintAssistant.app */,
+				06A115952137CAE300EB2F5E /* 图标着色助手.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				06A923D02363E5F300198B28 /* ITACommon.h */,
-				06A923CE2363E5C900198B28 /* ITACommon.swift */,
-				06A923CD2363E56500198B28 /* ImageTintAssistant-Bridging-Header.h */,
+				06DB5FF7238519C900467586 /* ITACommon.swift */,
+				06DB5FFB23851AAD00467586 /* ImageTintAssistant-Bridging-Header.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -132,7 +141,7 @@
 		06A923D62363E67500198B28 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				06A923D72363E67500198B28 /* ITARGBInputView.swift */,
+				06DB5FF9238519E400467586 /* ITARGBInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,7 +174,7 @@
 			);
 			name = ImageTintAssistant;
 			productName = ChangeImageColor;
-			productReference = 06A115952137CAE300EB2F5E /* ImageTintAssistant.app */;
+			productReference = 06A115952137CAE300EB2F5E /* 图标着色助手.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -207,9 +216,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06DE4E6423852BED00F514B2 /* app_icon_mac_template.png in Resources */,
 				06A115A52137CAE400EB2F5E /* LaunchScreen.storyboard in Resources */,
+				06DE4E62238528C700F514B2 /* material_icon.png in Resources */,
 				06A115A02137CAE300EB2F5E /* Main.storyboard in Resources */,
 				06A923E72363E6D700198B28 /* Assets.xcassets in Resources */,
+				06DE4E602385286600F514B2 /* app_icon_template.png in Resources */,
 				066C8AAF2366E3C000D97D63 /* example_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,9 +234,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A923E42363E6D700198B28 /* main.m in Sources */,
-				06A923CF2363E5C900198B28 /* ITACommon.swift in Sources */,
+				06DB5FF8238519C900467586 /* ITACommon.swift in Sources */,
 				06A923D82363E67500198B28 /* ViewController.m in Sources */,
-				06A923D92363E67500198B28 /* ITARGBInputView.swift in Sources */,
+				06DB5FFA238519E500467586 /* ITARGBInputView.swift in Sources */,
 				06A1159A2137CAE300EB2F5E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,8 +388,9 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BTStudio.ImageTintAssistant;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "图标着色助手";
 				SWIFT_OBJC_BRIDGING_HEADER = "ImageTintAssistant/Common/ImageTintAssistant-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ImageTintAssistant-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -399,8 +412,9 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BTStudio.ImageTintAssistant;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "图标着色助手";
 				SWIFT_OBJC_BRIDGING_HEADER = "ImageTintAssistant/Common/ImageTintAssistant-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "ImageTintAssistant-Swift.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
