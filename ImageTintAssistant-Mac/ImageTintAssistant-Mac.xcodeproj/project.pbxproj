@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		065B6659238634140009F545 /* ITARGBInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B6658238634140009F545 /* ITARGBInputView.swift */; };
+		065B665C2386391B0009F545 /* ITACommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B665B2386391B0009F545 /* ITACommon.swift */; };
+		065B665E238687B40009F545 /* NSImage+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B665D238687B40009F545 /* NSImage+Helper.swift */; };
+		06865C7323850B6200AD9C5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06865C7223850B6200AD9C5A /* AppDelegate.swift */; };
+		06865C7723850B6800AD9C5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06865C7623850B6800AD9C5A /* Assets.xcassets */; };
+		06865C7A23850B6800AD9C5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06865C7823850B6800AD9C5A /* Main.storyboard */; };
+		06DE4E682385362300F514B2 /* example_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DE4E672385362300F514B2 /* example_icon.png */; };
+		06DE4E6C2385365000F514B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE4E6B2385365000F514B2 /* ViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		065B6658238634140009F545 /* ITARGBInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
+		065B665B2386391B0009F545 /* ITACommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
+		065B665D238687B40009F545 /* NSImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Helper.swift"; sourceTree = "<group>"; };
+		06865C6F23850B6200AD9C5A /* ImageTintAssistant-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ImageTintAssistant-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06865C7223850B6200AD9C5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		06865C7623850B6800AD9C5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		06865C7923850B6800AD9C5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		06865C7B23850B6900AD9C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06865C7C23850B6900AD9C5A /* ImageTintAssistant_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImageTintAssistant_Mac.entitlements; sourceTree = "<group>"; };
+		06DE4E672385362300F514B2 /* example_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_icon.png; sourceTree = "<group>"; };
+		06DE4E6B2385365000F514B2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		06865C6C23850B6200AD9C5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		065B6657238633860009F545 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				065B6658238634140009F545 /* ITARGBInputView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		065B665A238639050009F545 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				065B665B2386391B0009F545 /* ITACommon.swift */,
+				065B665D238687B40009F545 /* NSImage+Helper.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		06865C6623850B6200AD9C5A = {
+			isa = PBXGroup;
+			children = (
+				06865C7123850B6200AD9C5A /* ImageTintAssistant-Mac */,
+				06865C7023850B6200AD9C5A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		06865C7023850B6200AD9C5A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				06865C6F23850B6200AD9C5A /* ImageTintAssistant-Mac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		06865C7123850B6200AD9C5A /* ImageTintAssistant-Mac */ = {
+			isa = PBXGroup;
+			children = (
+				06865C7C23850B6900AD9C5A /* ImageTintAssistant_Mac.entitlements */,
+				06865C7223850B6200AD9C5A /* AppDelegate.swift */,
+				06865C7823850B6800AD9C5A /* Main.storyboard */,
+				06DE4E692385365000F514B2 /* Main */,
+				065B665A238639050009F545 /* Common */,
+				06DE4E652385362300F514B2 /* Resources */,
+				06865C7623850B6800AD9C5A /* Assets.xcassets */,
+				06865C7B23850B6900AD9C5A /* Info.plist */,
+			);
+			path = "ImageTintAssistant-Mac";
+			sourceTree = "<group>";
+		};
+		06DE4E652385362300F514B2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				06DE4E662385362300F514B2 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		06DE4E662385362300F514B2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				06DE4E672385362300F514B2 /* example_icon.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		06DE4E692385365000F514B2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				06DE4E6A2385365000F514B2 /* Controller */,
+				065B6657238633860009F545 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		06DE4E6A2385365000F514B2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				06DE4E6B2385365000F514B2 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		06865C6E23850B6200AD9C5A /* ImageTintAssistant-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06865C7F23850B6900AD9C5A /* Build configuration list for PBXNativeTarget "ImageTintAssistant-Mac" */;
+			buildPhases = (
+				06865C6B23850B6200AD9C5A /* Sources */,
+				06865C6C23850B6200AD9C5A /* Frameworks */,
+				06865C6D23850B6200AD9C5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ImageTintAssistant-Mac";
+			productName = "ImageTintAssistant-Mac";
+			productReference = 06865C6F23850B6200AD9C5A /* ImageTintAssistant-Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		06865C6723850B6200AD9C5A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = BW;
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = BTStudio;
+				TargetAttributes = {
+					06865C6E23850B6200AD9C5A = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 06865C6A23850B6200AD9C5A /* Build configuration list for PBXProject "ImageTintAssistant-Mac" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 06865C6623850B6200AD9C5A;
+			productRefGroup = 06865C7023850B6200AD9C5A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				06865C6E23850B6200AD9C5A /* ImageTintAssistant-Mac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		06865C6D23850B6200AD9C5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06865C7723850B6800AD9C5A /* Assets.xcassets in Resources */,
+				06DE4E682385362300F514B2 /* example_icon.png in Resources */,
+				06865C7A23850B6800AD9C5A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		06865C6B23850B6200AD9C5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				065B6659238634140009F545 /* ITARGBInputView.swift in Sources */,
+				065B665C2386391B0009F545 /* ITACommon.swift in Sources */,
+				06DE4E6C2385365000F514B2 /* ViewController.swift in Sources */,
+				06865C7323850B6200AD9C5A /* AppDelegate.swift in Sources */,
+				065B665E238687B40009F545 /* NSImage+Helper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		06865C7823850B6800AD9C5A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				06865C7923850B6800AD9C5A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		06865C7D23850B6900AD9C5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		06865C7E23850B6900AD9C5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		06865C8023850B6900AD9C5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ImageTintAssistant-Mac/ImageTintAssistant_Mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "ImageTintAssistant-Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		06865C8123850B6900AD9C5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ImageTintAssistant-Mac/ImageTintAssistant_Mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "ImageTintAssistant-Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06865C6A23850B6200AD9C5A /* Build configuration list for PBXProject "ImageTintAssistant-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06865C7D23850B6900AD9C5A /* Debug */,
+				06865C7E23850B6900AD9C5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06865C7F23850B6900AD9C5A /* Build configuration list for PBXNativeTarget "ImageTintAssistant-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06865C8023850B6900AD9C5A /* Debug */,
+				06865C8123850B6900AD9C5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 06865C6723850B6200AD9C5A /* Project object */;
+}
