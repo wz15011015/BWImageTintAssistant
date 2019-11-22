@@ -131,7 +131,11 @@ class ITARGBInputView: NSView {
         
         // 2. 设置输入框文字
         if textField == rgbHexTextField {
-            updateRGBTextField("\(red)", "\(green)", "\(blue)")
+            if string.isEmpty { // 删除 RGB Hex输入框中的全部字符后,让RGB输入框显示占位符
+                updateRGBTextField(nil, nil, nil)
+            } else {
+                updateRGBTextField("\(red)", "\(green)", "\(blue)")
+            }
         } else { // 十进制 转 十六进制字符串
             updateRGBHexTextField(red, green, blue)
         }
@@ -140,6 +144,7 @@ class ITARGBInputView: NSView {
         let color = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         rgbColorHandler?(color, red, green, blue)
     }
+    
     
     /// 从十六进制字符串中解析RGB值
     /// - Parameter text: 十六进制字符串

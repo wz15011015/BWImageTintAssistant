@@ -12,7 +12,10 @@ iOS开发者的图标调色助手。
 
 ## Usage
 
-<img src="https://github.com/wz15011015/BWImageTintAssistant/blob/master/Screenshots/tint_image_demo.gif" width="240" height="519">
+##### For iPhone & Mac
+
+<img src="https://github.com/wz15011015/BWImageTintAssistant/blob/master/Screenshots/tint_image_demo.gif" width="240" height="519">     <img src="https://github.com/wz15011015/BWImageTintAssistant/blob/master/Screenshots/ImageTintAssistant-Mac.png" width="398" height="519">
+
 
 
 ## License
