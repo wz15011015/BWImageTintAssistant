@@ -29,14 +29,29 @@ extension NSImage {
     convenience init?(sourceImage: NSImage, tintColor: NSColor) {
         let size = sourceImage.size
         
-        self.init(size: size)
+        // 针对Retina屏幕,宽高都除以2,以保证处理后的图像保持原始大小
+        let halfSize = NSSize(width: size.width / 2.0, height: size.height / 2.0)
         
-        let bounds = NSRect(x: 0, y: 0, width: size.width, height: size.height)
+        // 初始化图像
+        self.init(size: halfSize)
         
+        // 图像目标尺寸
+        let rect = NSRect(x: 0, y: 0, width: halfSize.width, height: halfSize.height)
+        // 图像源尺寸
+        let fromRect = NSRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        
+        // lockFocus()使用屏幕属性,普通屏幕为 72dpi,视网膜屏幕为 144dpi
         lockFocus()
-        tintColor.drawSwatch(in: bounds)
-        // destinationOver能保留灰度信息,destinationIn能保留透明度信息
-        sourceImage.draw(in: bounds, from: bounds, operation: .destinationIn, fraction: 1.0)
+        
+        tintColor.drawSwatch(in: rect)
+        
+        // rect: 图像目标尺寸
+        // fromRect: 图像源尺寸,如果传入NSZeroRect,则为整个源图像大小
+        // operation: destinationOver能保留灰度信息,destinationIn能保留透明度信息
+        // fraction: 图片的不透明度,范围0.0 ~ 1.0
+        sourceImage.draw(in: rect, from: fromRect, operation: .destinationIn, fraction: 1.0)
+        
         unlockFocus()
     }
 }

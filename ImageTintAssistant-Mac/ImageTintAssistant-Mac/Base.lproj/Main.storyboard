@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -721,7 +722,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="originalImageTap" target="XfG-lQ-9wD" id="HXR-od-pEC"/>
+                                    <action selector="addImageEvent:" target="XfG-lQ-9wD" id="zyV-x8-oHk"/>
                                 </connections>
                             </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="jym-xN-iZU" customClass="ITARGBInputView" customModule="ImageTintAssistant_Mac" customModuleProvider="target">
@@ -743,7 +744,7 @@
                                 </buttonCell>
                                 <color key="contentTintColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
-                                    <action selector="tintImageEvent" target="XfG-lQ-9wD" id="Pxu-bX-vBg"/>
+                                    <action selector="tintImageEvent:" target="XfG-lQ-9wD" id="t2b-TF-ZSb"/>
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UIB-46-rQL">
@@ -757,7 +758,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="tintImageTap" target="XfG-lQ-9wD" id="QD8-v9-zBR"/>
+                                    <action selector="saveImageEvent:" target="XfG-lQ-9wD" id="WXi-bO-PqA"/>
                                 </connections>
                             </button>
                         </subviews>

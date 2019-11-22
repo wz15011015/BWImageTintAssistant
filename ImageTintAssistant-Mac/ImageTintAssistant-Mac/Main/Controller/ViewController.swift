@@ -110,7 +110,7 @@ class ViewController: NSViewController {
 extension ViewController {
     
     /// 添加要着色图片事件
-    @IBAction func originalImageTap(_ sender: NSButton) {
+    @IBAction func addImageEvent(_ sender: NSButton) {
         // 文件打开面板
         let panel = NSOpenPanel()
         panel.message = "选择要着色的图标"
@@ -148,7 +148,7 @@ extension ViewController {
     }
     
     /// 导出着色图片事件
-    @IBAction func tintImageTap(_ sender: NSButton) {
+    @IBAction func saveImageEvent(_ sender: NSButton) {
         // 生成默认保存文件名
         let imageFileName = "tint_image_RGB(\(red),\(green),\(blue))"
         
@@ -164,8 +164,22 @@ extension ViewController {
                 guard let url = panel.url else {
                     return
                 }
-                let imageData = self.tintImage?.tiffRepresentation
-                try? imageData?.write(to: url)
+                // https://blog.csdn.net/lovechris00/article/details/81103692#1_427
+                
+                if let image = self.tintImage,
+                    let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                    let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
+                    bitmapImageRep.size = image.size
+                    // 强制指定像素宽高
+                    // pixelsWide == size.width && pixelsHigh == size.height 时,dpi为72
+                    // pixelsWide == 2 * size.width && pixelsHigh == 2 * size.height 时,dpi为144
+                    bitmapImageRep.pixelsWide = Int(image.size.width)
+                    bitmapImageRep.pixelsHigh = Int(image.size.height)
+                    let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
+                    
+                    // 保存图片到本地
+                    try? pngData?.write(to: url)
+                }
             }
         }
     }

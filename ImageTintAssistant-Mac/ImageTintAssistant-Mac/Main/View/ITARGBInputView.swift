@@ -181,6 +181,9 @@ class ITARGBInputView: NSView {
     }
 }
 
+
+// MARK: - NSTextFieldDelegate
+
 extension ITARGBInputView: NSTextFieldDelegate {
     
 }
