@@ -116,6 +116,11 @@ class ITARGBInputView: NSView {
         if textField == rgbHexTextField {
             resolveRGBFrom(hexString: string)
         } else {
+            let valid = verifyIntNumberString(string: string)
+            if !valid {
+                print("输入内容为不合法的数字")
+                return
+            }
             // 范围: 0~255
             var rgbValue = Int(string) ?? 0
             rgbValue = rgbValue < 0 ? 0 : rgbValue
@@ -149,6 +154,12 @@ class ITARGBInputView: NSView {
     /// 从十六进制字符串中解析RGB值
     /// - Parameter text: 十六进制字符串
     func resolveRGBFrom(hexString text: String) {
+        let valid = verifyHexString(string: text)
+        if !valid {
+            print("输入内容为不合法的十六进制数字")
+            return
+        }
+        
         if text.count == 2 {
             let redHex = UInt(text, radix: 16) ?? 0 // 16进制字符串转整型
             red = Int(redHex)
@@ -238,5 +249,30 @@ extension ITARGBInputView {
         redTextField.stringValue = red ?? ""
         greenTextField.stringValue = green ?? ""
         blueTextField.stringValue = blue ?? ""
+    }
+}
+
+
+// MARK: - Tool Methods
+extension ITARGBInputView {
+    
+    /// 验证是否为合法的Int格式字符串
+    /// - Parameter string: 要验证的字符串
+    func verifyIntNumberString(string: String?) -> Bool {
+        guard let string = string else { return false }
+        
+        let regex = "^[0-9]+$"
+        let predicate = NSPredicate.init(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: string)
+    }
+    
+    /// 验证是否为合法的十六进制格式字符串
+    /// - Parameter string: 要验证的字符串
+    func verifyHexString(string: String?) -> Bool {
+        guard let string = string else { return false }
+        
+        let regex = "^[0-9a-fA-F]+$"
+        let predicate = NSPredicate.init(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: string)
     }
 }
