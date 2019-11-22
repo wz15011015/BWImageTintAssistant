@@ -66,7 +66,7 @@ class ITARGBInputView: NSView {
         let textField = NSTextField()
         textField.delegate = self
         textField.font = textFieldFont
-        textField.textColor = NSColor.white
+        textField.textColor = NSColor.labelColor
         textField.placeholderAttributedString = NSAttributedString(string: "#DF7E1F", attributes: [NSAttributedString.Key.foregroundColor : RGBColor(186, 186, 186), NSAttributedString.Key.font : textFieldFont])
         return textField
     }()
@@ -116,12 +116,16 @@ class ITARGBInputView: NSView {
         if textField == rgbHexTextField {
             resolveRGBFrom(hexString: string)
         } else {
+            // 范围: 0~255
+            var rgbValue = Int(string) ?? 0
+            rgbValue = rgbValue < 0 ? 0 : rgbValue
+            rgbValue = rgbValue > 255 ? 255 : rgbValue
             if textField == redTextField {
-                red = Int(string) ?? 0
+                red = rgbValue
             } else if textField == greenTextField {
-                green = Int(string) ?? 0
+                green = rgbValue
             } else if textField == blueTextField {
-                blue = Int(string) ?? 0
+                blue = rgbValue
             }
         }
         

@@ -38,8 +38,8 @@ class ViewController: NSViewController {
             self.blue = blue
             
             // 更新按钮背景颜色
-            self.tintButton.layer?.backgroundColor = self.tintColor?.cgColor
             self.tintButton.wantsLayer = true
+            self.tintButton.layer?.backgroundColor = self.tintColor?.cgColor
         }
     }
 
@@ -49,6 +49,60 @@ class ViewController: NSViewController {
         }
     }
 
+    override func viewWillLayout() {
+        super.viewWillLayout()
+        
+        /**
+         * Mac开发之Dark Mode适配 (https://blog.csdn.net/pbfl98/article/details/101101264)
+         *
+         * 1. 苹果在10.14版本中添加了主题设置功能，用户可以将主题切换为Dark Mode，切换后系统应用都会自动变成深色。
+         *
+         * 2. 颜色适配
+         *  - 对于颜色的适配，官方文档介绍了两种方法，一种是使用系统的语义颜色（semantic colors）代替固定的颜色值。
+         *  例如[NSColor labelColor],[NSColor windowBackgroundColor]使用这类语义颜色系统会自动根据当前的主题使用合适的颜色值进行渲染。
+         *  也就是说它们表现出的实际颜色会随着当前主题变化而变化。
+         *  所以该方法很简单，工作量也少，但是缺点也很明显：系统提供的颜色有限，不能满足所有应用场景。
+         *
+         *  - 第二种方法是使用Color Asset，在Assets.xcassets中创建Color Set，设置不同主题下不同的颜色值。
+         *    - Any Appearance：macOS Mojave 10.14.2系统以下版本的颜色值；
+         *    - Light Appearance:  浅色模式下的颜色值；
+         *    - Dark Appearance：深色模式下的颜色值；
+         *
+         *  在应用中通过color name获取颜色：
+         *  // 该方法只能用于macOS 10.13及以上的系统
+         *  NSColor *color = [NSColor colorNamed:@"text_color"];
+         *
+         *  该方法和系统的语义颜色一样，会根据当前的主题自动适配。但是有个前提：直接使用NSColor设置颜色值。例如：
+         *  NSColor *color = [NSColor colorNamed:@"text_color"];
+         *  [textField setTextColor:color];
+         *
+         *  如果是使用CGColor设置颜色值，则不会有效果。例如设置NSViewController的背景颜色：
+         *  self.view.wantsLayer = YES;
+         *  self.view.layer.backgroundColor = [NSColor whiteColor].CGColor;
+         */
+        
+        /// 适配 Dark Mode
+        /// 当切换主题时，系统会让window和view重新绘制，对于NSViewController, 会自动调用viewWillLayout和viewDidLayout方法，
+        /// 对于NSView，会自动调用drawRect:方法。
+        
+        // 1. ViewController背景颜色
+        var vcBackgroundColor = RGBColor(236, 236, 236)
+        // 2. 图片背景颜色
+        var iconImageBackgroundColor = RGBColor(228, 228, 228)
+        
+        if isDarkMode() {
+            vcBackgroundColor = RGBColor(42, 43, 43)
+            iconImageBackgroundColor = RGBColor(52, 53, 53)
+        }
+        
+        view.wantsLayer = true
+        view.layer?.backgroundColor = vcBackgroundColor.cgColor
+        
+        originalImageButton.wantsLayer = true
+        tintedImageButton.wantsLayer = true
+        originalImageButton.layer?.backgroundColor = iconImageBackgroundColor.cgColor
+        tintedImageButton.layer?.backgroundColor = iconImageBackgroundColor.cgColor
+    }
 }
 
 // MARK: - Events

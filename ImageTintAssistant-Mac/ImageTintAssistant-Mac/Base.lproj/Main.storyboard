@@ -687,7 +687,7 @@
                     <window key="window" title="图标着色助手" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="181" y="240" width="440" height="200"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="400" height="520"/>
                         <connections>
@@ -700,7 +700,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="75" y="201"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -711,7 +711,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UsK-MA-rPP">
-                                <rect key="frame" x="140" y="395" width="120" height="120"/>
+                                <rect key="frame" x="140" y="370" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="K1W-im-ZWT"/>
                                     <constraint firstAttribute="width" constant="120" id="ppc-QL-utW"/>
@@ -725,32 +725,32 @@
                                 </connections>
                             </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="jym-xN-iZU" customClass="ITARGBInputView" customModule="ImageTintAssistant_Mac" customModuleProvider="target">
-                                <rect key="frame" x="22" y="325" width="356" height="60"/>
+                                <rect key="frame" x="22" y="290" width="356" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="356" id="99b-y9-M7w"/>
                                     <constraint firstAttribute="height" constant="60" id="hmy-7z-4Ef"/>
                                 </constraints>
                             </customView>
                             <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ok6-QY-AXW">
-                                <rect key="frame" x="160" y="265" width="80" height="40"/>
+                                <rect key="frame" x="160" y="240" width="80" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="eH8-Ob-SMQ"/>
+                                    <constraint firstAttribute="width" constant="80" id="hOF-Vg-maV"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" title="Tint" bezelStyle="shadowlessSquare" image="palette" imagePosition="leading" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mki-e5-Uq7">
+                                <buttonCell key="cell" type="square" title="Tint" bezelStyle="shadowlessSquare" image="palette" imagePosition="leading" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mki-e5-Uq7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <color key="contentTintColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <action selector="tintImageEvent" target="XfG-lQ-9wD" id="Pxu-bX-vBg"/>
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UIB-46-rQL">
-                                <rect key="frame" x="140" y="135" width="120" height="120"/>
+                                <rect key="frame" x="140" y="100" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="0ip-ud-86d"/>
                                     <constraint firstAttribute="height" constant="120" id="5of-cK-QpX"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="aeu-Y9-pjj"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="mYP-GQ-YNP"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="example_icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nG4-jc-mlx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -762,13 +762,13 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="10" id="1vM-wC-vLY"/>
+                            <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="20" id="1vM-wC-vLY"/>
                             <constraint firstItem="Ok6-QY-AXW" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="3dK-uq-RVe"/>
                             <constraint firstItem="UIB-46-rQL" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Oqb-T7-uUi"/>
-                            <constraint firstItem="Ok6-QY-AXW" firstAttribute="top" secondItem="jym-xN-iZU" secondAttribute="bottom" constant="20" id="R7B-x1-Atu"/>
-                            <constraint firstItem="UIB-46-rQL" firstAttribute="top" secondItem="Ok6-QY-AXW" secondAttribute="bottom" constant="10" id="S2C-MC-nmm"/>
+                            <constraint firstItem="Ok6-QY-AXW" firstAttribute="top" secondItem="jym-xN-iZU" secondAttribute="bottom" constant="10" id="R7B-x1-Atu"/>
+                            <constraint firstItem="UIB-46-rQL" firstAttribute="top" secondItem="Ok6-QY-AXW" secondAttribute="bottom" constant="20" id="S2C-MC-nmm"/>
                             <constraint firstItem="jym-xN-iZU" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="dY9-gU-tSF"/>
-                            <constraint firstItem="UsK-MA-rPP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="dwC-O3-WZq"/>
+                            <constraint firstItem="UsK-MA-rPP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="dwC-O3-WZq"/>
                             <constraint firstItem="UsK-MA-rPP" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="rqU-LK-g4g"/>
                         </constraints>
                     </view>
@@ -781,7 +781,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="935"/>
+            <point key="canvasLocation" x="75" y="705"/>
         </scene>
     </scenes>
     <resources>
