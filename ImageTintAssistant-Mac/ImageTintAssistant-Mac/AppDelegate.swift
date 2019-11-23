@@ -10,6 +10,8 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    private var shouldTeminateAppWhenClose: Bool = true
 
     // 应用程序名称默认为TARGET名称,可以在Building Setting --> Product Nmae 中修改.
     
@@ -20,6 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // 1. 点击关闭按钮时,直接让应用程序退出
         // 注册 willCloseNotification 通知,然后在通知方法中退出应用程序
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWindowWillClose), name: NSWindow.willCloseNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWindowWillEnterFullScreen), name: NSWindow.willEnterFullScreenNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWindowWillExitFullScreen), name: NSWindow.willExitFullScreenNotification, object: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -54,7 +58,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Notification
     
+    @objc func applicationWindowWillEnterFullScreen(_ aNotification: Notification) {
+        print("NSWindow.willEnterFullScreenNotification")
+        
+        shouldTeminateAppWhenClose = true
+    }
+    
+    @objc func applicationWindowWillExitFullScreen(_ aNotification: Notification) {
+        print("NSWindow.willExitFullScreenNotification")
+        
+        shouldTeminateAppWhenClose = false
+    }
+    
     @objc func applicationWindowWillClose(_ aNotification: Notification) {
+        print("NSWindow.willCloseNotification")
+        
+        // 解决退出全屏时,也会发送willCloseNotification通知,从而导致退出应用程序的问题
+        guard shouldTeminateAppWhenClose else { return }
+        
         NSApp.terminate(self)
     }
 }
