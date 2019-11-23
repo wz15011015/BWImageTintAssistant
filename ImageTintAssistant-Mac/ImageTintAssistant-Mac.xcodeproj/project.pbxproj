@@ -21,7 +21,7 @@
 		065B6658238634140009F545 /* ITARGBInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
 		065B665B2386391B0009F545 /* ITACommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
 		065B665D238687B40009F545 /* NSImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Helper.swift"; sourceTree = "<group>"; };
-		06865C6F23850B6200AD9C5A /* ImageTintAssistant-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ImageTintAssistant-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06865C6F23850B6200AD9C5A /* 图标着色助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "图标着色助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06865C7223850B6200AD9C5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06865C7623850B6800AD9C5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06865C7923850B6800AD9C5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		06865C7023850B6200AD9C5A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06865C6F23850B6200AD9C5A /* ImageTintAssistant-Mac.app */,
+				06865C6F23850B6200AD9C5A /* 图标着色助手.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			);
 			name = "ImageTintAssistant-Mac";
 			productName = "ImageTintAssistant-Mac";
-			productReference = 06865C6F23850B6200AD9C5A /* ImageTintAssistant-Mac.app */;
+			productReference = 06865C6F23850B6200AD9C5A /* 图标着色助手.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -344,7 +344,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "图标着色助手";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,7 +363,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "图标着色助手";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

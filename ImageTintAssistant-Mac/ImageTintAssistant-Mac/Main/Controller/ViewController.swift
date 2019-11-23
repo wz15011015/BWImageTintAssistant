@@ -28,7 +28,6 @@ class ViewController: NSViewController {
         
         // 初始化
         originalImage = NSImage(named: "example_icon.png")
-        tintImage = originalImage
         tintColor = RGBColor(0, 0, 0)
         
         rgbView.rgbColorHandler = { (color: NSColor, red: Int, green: Int, blue: Int) in
@@ -149,6 +148,8 @@ extension ViewController {
     
     /// 导出着色图片事件
     @IBAction func saveImageEvent(_ sender: NSButton) {
+        guard tintImage != nil else { return }
+        
         // 生成默认保存文件名
         let imageFileName = "tint_image_RGB(\(red),\(green),\(blue))"
         

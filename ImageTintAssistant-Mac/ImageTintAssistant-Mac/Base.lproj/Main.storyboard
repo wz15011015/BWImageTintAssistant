@@ -753,7 +753,7 @@
                                     <constraint firstAttribute="width" constant="120" id="0ip-ud-86d"/>
                                     <constraint firstAttribute="height" constant="120" id="5of-cK-QpX"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="example_icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nG4-jc-mlx">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nG4-jc-mlx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
