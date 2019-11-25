@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    // MARK: - Notification
+    // MARK: - Custom Notification
     
     @objc func applicationWindowWillEnterFullScreen(_ aNotification: Notification) {
         print("NSWindow.willEnterFullScreenNotification")
