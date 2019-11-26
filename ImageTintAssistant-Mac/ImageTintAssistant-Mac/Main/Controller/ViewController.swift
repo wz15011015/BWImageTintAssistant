@@ -157,30 +157,31 @@ extension ViewController {
         let panel = NSSavePanel()
         panel.message = "保存着色后的图标"
         panel.allowedFileTypes = ["png"]
-        panel.directoryURL = URL(string: "~/Desktop") // 默认保存路径
+//        panel.directoryURL = URL(string: "~/Desktop") // 默认保存路径
 //        panel.directoryURL = URL(fileURLWithPath: NSHomeDirectory().appending("/Desktop"))
         panel.nameFieldStringValue = imageFileName // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
-            if response == .OK {
-                guard let url = panel.url else {
-                    return
-                }
-                // https://blog.csdn.net/lovechris00/article/details/81103692#1_427
+            if response != .OK {
+                return
+            }
+            guard let url = panel.url else {
+                return
+            }
+            // https://blog.csdn.net/lovechris00/article/details/81103692#1_427
+            
+            if let image = self.tintImage,
+                let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
+//                    bitmapImageRep.size = image.size
+                // 强制指定像素宽高
+                // pixelsWide == size.width && pixelsHigh == size.height 时,dpi为72
+                // pixelsWide == 2 * size.width && pixelsHigh == 2 * size.height 时,dpi为144
+//                    bitmapImageRep.pixelsWide = Int(image.size.width)
+//                    bitmapImageRep.pixelsHigh = Int(image.size.height)
+                let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
                 
-                if let image = self.tintImage,
-                    let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-                    let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
-                    bitmapImageRep.size = image.size
-                    // 强制指定像素宽高
-                    // pixelsWide == size.width && pixelsHigh == size.height 时,dpi为72
-                    // pixelsWide == 2 * size.width && pixelsHigh == 2 * size.height 时,dpi为144
-                    bitmapImageRep.pixelsWide = Int(image.size.width)
-                    bitmapImageRep.pixelsHigh = Int(image.size.height)
-                    let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
-                    
-                    // 保存图片到本地
-                    try? pngData?.write(to: url)
-                }
+                // 保存图片到本地
+                try? pngData?.write(to: url)
             }
         }
     }

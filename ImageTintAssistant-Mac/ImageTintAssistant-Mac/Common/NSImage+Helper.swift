@@ -29,29 +29,30 @@ extension NSImage {
     convenience init?(sourceImage: NSImage, tintColor: NSColor) {
         let size = sourceImage.size
         
-        // 针对Retina屏幕,宽高都除以2,以保证处理后的图像保持原始大小
-        let halfSize = NSSize(width: size.width / 2.0, height: size.height / 2.0)
+        // 1. 目标图像尺寸
+        // 屏幕倍数(几倍屏)
+        var screenScale = NSScreen.main?.backingScaleFactor ?? 1.0
+        // 在外接显示器屏幕上时,获取的screenScale为1.0,会导致处理后的图像尺寸错误,所以设置screenScale=2.0
+        screenScale = 2.0
+        let targetSize = NSSize(width: size.width / screenScale, height: size.height / screenScale)
         
-        // 初始化图像
-        self.init(size: halfSize)
-        
-        // 图像目标尺寸
-        let rect = NSRect(x: 0, y: 0, width: halfSize.width, height: halfSize.height)
-        // 图像源尺寸
+        // 目标图像尺寸
+        let targetRect = NSRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
+        // 源图像尺寸
         let fromRect = NSRect(x: 0, y: 0, width: size.width, height: size.height)
         
+        // 2. 初始化图像
+        self.init(size: targetSize)
         
+        // 3. 创建目标图像并绘制
         // lockFocus()使用屏幕属性,普通屏幕为 72dpi,视网膜屏幕为 144dpi
         lockFocus()
-        
-        tintColor.drawSwatch(in: rect)
-        
-        // rect: 图像目标尺寸
+        tintColor.drawSwatch(in: targetRect)
+        // targetRect: 图像目标尺寸
         // fromRect: 图像源尺寸,如果传入NSZeroRect,则为整个源图像大小
         // operation: destinationOver能保留灰度信息,destinationIn能保留透明度信息
         // fraction: 图片的不透明度,范围0.0 ~ 1.0
-        sourceImage.draw(in: rect, from: fromRect, operation: .destinationIn, fraction: 1.0)
-        
+        sourceImage.draw(in: targetRect, from: fromRect, operation: .destinationIn, fraction: 1.0)
         unlockFocus()
     }
 }
