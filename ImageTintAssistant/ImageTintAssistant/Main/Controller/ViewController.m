@@ -10,7 +10,7 @@
 #import "ImageTintAssistant-Swift.h"
 #import "ITACommon.h"
 
-@interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *originalImageView; // 原始图片
 @property (nonatomic, strong) ITARGBInputView *rgbView; // 颜色值输入视图
@@ -191,7 +191,25 @@
     // 2. 弹出系统分享控制器
     NSArray *itemsArr = @[fileURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsArr applicationActivities:nil];
+//    [self presentViewController:activityViewController animated:YES completion:nil];
+    
+    // 为了适配iPad,使用UIPopoverPresentationController
+    UIPopoverPresentationController *popVC = activityViewController.popoverPresentationController;
+    popVC.delegate = self;
+    // 设置允许的方向
+//    popVC.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    popVC.sourceView = self.tintedImageView;
+    // 设置箭头锚点的位置 (CGRectMake(0, 0, 0, 0): sourceView的左上角)
+    popVC.sourceRect = CGRectMake(CGRectGetWidth(self.tintedImageView.frame), CGRectGetHeight(self.tintedImageView.frame) / 2, 0, 0);
+    popVC.canOverlapSourceViewRect = YES;
     [self presentViewController:activityViewController animated:YES completion:nil];
+}
+
+
+#pragma mark - UIPopoverPresentationControllerDelegate
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller traitCollection:(UITraitCollection *)traitCollection {
+    return UIModalPresentationPopover;
 }
 
 
