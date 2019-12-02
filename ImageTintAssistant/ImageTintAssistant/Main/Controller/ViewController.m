@@ -118,6 +118,9 @@
     
     // 更新控件位置
     CGFloat originalImageViewY = screen_width > screen_height ? 0 : NAVIGATION_BAR_HEIGHT;
+    if (IS_IPAD) {
+        originalImageViewY = NAVIGATION_BAR_HEIGHT;
+    }
     CGFloat space = screen_width > screen_height ? 10 : 20;
     
     CGRect originalImageViewFrame = self.originalImageView.frame;
@@ -159,7 +162,6 @@
     }
     // 2. 着色后图片
     self.tintImage = [self tintImage:self.originalImage tintColor:self.tintColor];
-//    self.tintImage = [self cornerImage:self.originalImage radius:240];
     // 显示着色后图片
     self.tintedImageView.image = self.tintImage;
     
@@ -188,6 +190,7 @@
     
     // 1. 读取图片文件
     NSURL *fileURL = [NSURL fileURLWithPath:self.tintImageFilePath];
+    
     // 2. 弹出系统分享控制器
     NSArray *itemsArr = @[fileURL];
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsArr applicationActivities:nil];
@@ -196,11 +199,9 @@
     // 为了适配iPad,使用UIPopoverPresentationController
     UIPopoverPresentationController *popVC = activityViewController.popoverPresentationController;
     popVC.delegate = self;
-    // 设置允许的方向
-//    popVC.permittedArrowDirections = UIPopoverArrowDirectionUp;
+//    popVC.permittedArrowDirections = UIPopoverArrowDirectionUp; // 设置允许的方向
     popVC.sourceView = self.tintedImageView;
-    // 设置箭头锚点的位置 (CGRectMake(0, 0, 0, 0): sourceView的左上角)
-    popVC.sourceRect = CGRectMake(CGRectGetWidth(self.tintedImageView.frame), CGRectGetHeight(self.tintedImageView.frame) / 2, 0, 0);
+    popVC.sourceRect = CGRectMake(CGRectGetWidth(self.tintedImageView.frame), CGRectGetHeight(self.tintedImageView.frame) / 2, 0, 0); // 设置箭头锚点的位置 (CGRectMake(0, 0, 0, 0): sourceView的左上角)
     popVC.canOverlapSourceViewRect = YES;
     [self presentViewController:activityViewController animated:YES completion:nil];
 }

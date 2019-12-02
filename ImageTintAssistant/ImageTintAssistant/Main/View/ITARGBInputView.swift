@@ -12,10 +12,6 @@ let RColor = RGBColor(211, 57, 53)
 let GColor = RGBColor(28, 147, 76)
 let BColor = RGBColor(60, 116, 242)
 
-//let RAColor = RGBAColor(211, 57, 53, 0.3)
-//let GAColor = RGBAColor(28, 147, 76, 0.3)
-//let BAColor = RGBAColor(60, 116, 242, 0.3)
-
 class ITARGBInputView: UIView {
     
     private lazy var rgbLabel: UILabel = {
