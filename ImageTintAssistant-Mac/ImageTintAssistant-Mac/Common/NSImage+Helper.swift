@@ -27,19 +27,33 @@ extension NSImage {
     /// - Parameter sourceImage: 源图片
     /// - Parameter tintColor: 滤镜颜色
     convenience init?(sourceImage: NSImage, tintColor: NSColor) {
+        /// NSImage的size属性:
+        /// 文件名                        size
+        /// xxx.png             等于实际像素大小
+        /// xxx@2x.png     等于实际像素大小的一半
+        /// xxx@3x.png     等于实际像素大小的1/3
+        /// 以此类推...
         let size = sourceImage.size
+        
+        // 获取实际像素大小 (通过CGImage获取)
+        var pixelSize = size
+        if let cgImageRef = sourceImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            pixelSize = NSSize(width: cgImageRef.width, height: cgImageRef.height)
+        }
         
         // 1. 目标图像尺寸
         // 屏幕倍数(几倍屏)
         var screenScale = NSScreen.main?.backingScaleFactor ?? 1.0
         // 在外接显示器屏幕上时,获取的screenScale为1.0,会导致处理后的图像尺寸错误,所以设置screenScale=2.0
         screenScale = 2.0
-        let targetSize = NSSize(width: size.width / screenScale, height: size.height / screenScale)
+        let targetSize = NSSize(width: pixelSize.width / screenScale, height: pixelSize.height / screenScale)
         
         // 目标图像尺寸
         let targetRect = NSRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
         // 源图像尺寸
         let fromRect = NSRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        print("size: (\(size.width), \(size.height)), size (pixel): (\(pixelSize.width), \(pixelSize.height))")
         
         // 2. 初始化图像
         self.init(size: targetSize)

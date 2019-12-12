@@ -26,11 +26,9 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 初始化
-        // 着色按钮背景色初始化为黑色
-        tintButton.wantsLayer = true
-        tintButton.layer?.backgroundColor = NSColor.black.cgColor
+        setupUI()
         
+        // 初始化
         originalImage = NSImage(named: "example_icon.png")
         
         // RGB值改变时的回调
@@ -110,6 +108,22 @@ class ViewController: NSViewController {
     }
 }
 
+
+// MARK: - UI
+
+private extension ViewController {
+    
+    func setupUI() {
+        // 设置按钮的鼠标悬停提示文字
+        originalImageButton.toolTip = NSLocalizedString("Click to add icon", comment: "")
+        
+        // 着色按钮背景色初始化为黑色
+        tintButton.wantsLayer = true
+        tintButton.layer?.backgroundColor = NSColor.black.cgColor
+    }
+}
+
+
 // MARK: - Events
 
 extension ViewController {
@@ -123,7 +137,9 @@ extension ViewController {
         panel.allowedFileTypes = ["png"]
         panel.allowsOtherFileTypes = false
         panel.allowsMultipleSelection = false
-        panel.directoryURL = URL(string: "~/Desktop") // 默认打开路径
+        // 默认打开路径 (不设置时,为上次记录的路径)
+//        panel.directoryURL = URL(string: "~/Desktop")
+//        panel.directoryURL = URL(fileURLWithPath: NSHomeDirectory().appending("/Desktop"))
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response == .OK { // 选取了文件
                 guard let url = panel.urls.first,
@@ -150,6 +166,13 @@ extension ViewController {
         
         // 显示着色图片
         tintedImageButton.image = tintImage
+        
+        // 设置点击时的图片
+        /// 当按钮类型为Momentary Change时,设置image和alternateImage为同一个图片,
+        /// 即可实现点击时不显示高亮效果.
+        tintedImageButton.alternateImage = tintImage
+        // 设置按钮的鼠标悬停提示文字
+        tintedImageButton.toolTip = NSLocalizedString("Click to save icon", comment: "")
     }
     
     /// 导出着色图片事件
@@ -159,9 +182,8 @@ extension ViewController {
         // 文件保存面板
         let panel = NSSavePanel()
         panel.message = NSLocalizedString("Save the tinted icon", comment: "")
+        panel.prompt = NSLocalizedString("Save", comment: "")
         panel.allowedFileTypes = ["png"]
-//        panel.directoryURL = URL(string: "~/Desktop") // 默认保存路径
-//        panel.directoryURL = URL(fileURLWithPath: NSHomeDirectory().appending("/Desktop"))
         panel.nameFieldStringValue = "tint_image_RGB(\(red),\(green),\(blue))" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
