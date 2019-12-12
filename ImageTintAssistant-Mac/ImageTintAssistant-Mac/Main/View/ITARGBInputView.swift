@@ -116,15 +116,18 @@ class ITARGBInputView: NSView {
         if textField == rgbHexTextField {
             resolveRGBFrom(hexString: string)
         } else {
-            let valid = verifyIntNumberString(string: string)
+            let str = string.isEmpty ? "0" : string // 当删除所有字符时,把值看做为0
+            let valid = verifyIntNumberString(string: str)
             if !valid {
                 print("输入内容为不合法的数字")
                 return
             }
             // 范围: 0~255
-            var rgbValue = Int(string) ?? 0
-            rgbValue = rgbValue < 0 ? 0 : rgbValue
-            rgbValue = rgbValue > 255 ? 255 : rgbValue
+            let rgbValue = Int(str) ?? 0
+            if rgbValue < 0 || rgbValue > 255 {
+                print("输入值范围需为: 0~255")
+                return
+            }
             if textField == redTextField {
                 red = rgbValue
             } else if textField == greenTextField {
@@ -163,6 +166,8 @@ class ITARGBInputView: NSView {
         if text.count == 2 {
             let redHex = UInt(text, radix: 16) ?? 0 // 16进制字符串转整型
             red = Int(redHex)
+            green = 0
+            blue = 0
             
         } else if text.count == 4 {
             // 截取字符串 (https://stackoverflow.com/questions/39677330/how-does-string-substring-work-in-swift)
@@ -176,6 +181,7 @@ class ITARGBInputView: NSView {
             
             red = Int(redHex)
             green = Int(greenHex)
+            blue = 0
             
         } else if text.count == 6 {
             // 截取字符串
