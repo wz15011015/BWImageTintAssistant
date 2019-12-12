@@ -75,6 +75,7 @@
     [self.tintButton setTitleColor:RGBColor(23, 130, 210) forState:UIControlStateNormal];
     [self.tintButton setImage:[UIImage imageNamed:@"palette"] forState:UIControlStateNormal];
     [self.tintButton addTarget:self action:@selector(tintImageEvent) forControlEvents:UIControlEventTouchUpInside];
+    self.tintButton.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.tintButton];
     
     // 4. 着色后图片
