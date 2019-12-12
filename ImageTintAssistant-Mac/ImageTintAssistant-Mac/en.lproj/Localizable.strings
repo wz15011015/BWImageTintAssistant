@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  ImageTintAssistant-Mac
+
+  Created by hadlinks on 2019/12/12.
+  Copyright © 2019 BTStudio. All rights reserved.
+*/
+
+"Please select the icon to be tint" = "Please select the icon to be tint";
+
+"Save the tinted icon" = "Save the tinted icon";
+"Select" = "Select";

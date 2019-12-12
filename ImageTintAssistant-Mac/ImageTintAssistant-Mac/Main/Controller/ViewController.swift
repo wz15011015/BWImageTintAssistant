@@ -17,8 +17,8 @@ class ViewController: NSViewController {
     
     private var originalImage: NSImage? // 原图片
     private var tintImage: NSImage? // 着色图片
-    private var tintColor: NSColor? // 着色颜色
     
+    // 着色颜色RGB值
     private var red: Int = 0
     private var green: Int = 0
     private var blue: Int = 0
@@ -27,18 +27,24 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         // 初始化
-        originalImage = NSImage(named: "example_icon.png")
-        tintColor = RGBColor(0, 0, 0)
+        // 着色按钮背景色初始化为黑色
+        tintButton.wantsLayer = true
+        tintButton.layer?.backgroundColor = NSColor.black.cgColor
         
+        originalImage = NSImage(named: "example_icon.png")
+        
+        // RGB值改变时的回调
         rgbView.rgbColorHandler = { (color: NSColor, red: Int, green: Int, blue: Int) in
-            self.tintColor = color
             self.red = red
             self.green = green
             self.blue = blue
+
+            // 着色颜色
+            let tintColor = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
             
             // 更新按钮背景颜色
             self.tintButton.wantsLayer = true
-            self.tintButton.layer?.backgroundColor = self.tintColor?.cgColor
+            self.tintButton.layer?.backgroundColor = tintColor.cgColor
         }
     }
 
@@ -112,8 +118,8 @@ extension ViewController {
     @IBAction func addImageEvent(_ sender: NSButton) {
         // 文件打开面板
         let panel = NSOpenPanel()
-        panel.message = "选择要着色的图标"
-        panel.prompt = "Select" // 自定义确定按钮文字
+        panel.message = NSLocalizedString("Please select the icon to be tint", comment: "")
+        panel.prompt = NSLocalizedString("Select", comment: "") // 自定义确定按钮文字
         panel.allowedFileTypes = ["png"]
         panel.allowsOtherFileTypes = false
         panel.allowsMultipleSelection = false
@@ -134,10 +140,10 @@ extension ViewController {
     
     /// 着色事件
     @IBAction func tintImageEvent(_ sender: NSButton) {
-        guard let originalImage = originalImage,
-            let tintColor = tintColor else {
-            return
-        }
+        guard let originalImage = originalImage else { return }
+        
+        // 着色颜色
+        let tintColor = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         
         // 图片着色
         tintImage = NSImage(sourceImage: originalImage, tintColor: tintColor)
@@ -150,16 +156,13 @@ extension ViewController {
     @IBAction func saveImageEvent(_ sender: NSButton) {
         guard tintImage != nil else { return }
         
-        // 生成默认保存文件名
-        let imageFileName = "tint_image_RGB(\(red),\(green),\(blue))"
-        
         // 文件保存面板
         let panel = NSSavePanel()
-        panel.message = "保存着色后的图标"
+        panel.message = NSLocalizedString("Save the tinted icon", comment: "")
         panel.allowedFileTypes = ["png"]
 //        panel.directoryURL = URL(string: "~/Desktop") // 默认保存路径
 //        panel.directoryURL = URL(fileURLWithPath: NSHomeDirectory().appending("/Desktop"))
-        panel.nameFieldStringValue = imageFileName // 默认保存文件名
+        panel.nameFieldStringValue = "tint_image_RGB(\(red),\(green),\(blue))" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
                 return
@@ -167,17 +170,18 @@ extension ViewController {
             guard let url = panel.url else {
                 return
             }
+            
             // https://blog.csdn.net/lovechris00/article/details/81103692#1_427
             
             if let image = self.tintImage,
                 let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
                 let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
-//                    bitmapImageRep.size = image.size
+//                bitmapImageRep.size = image.size
                 // 强制指定像素宽高
                 // pixelsWide == size.width && pixelsHigh == size.height 时,dpi为72
                 // pixelsWide == 2 * size.width && pixelsHigh == 2 * size.height 时,dpi为144
-//                    bitmapImageRep.pixelsWide = Int(image.size.width)
-//                    bitmapImageRep.pixelsHigh = Int(image.size.height)
+//                bitmapImageRep.pixelsWide = Int(image.size.width)
+//                bitmapImageRep.pixelsHigh = Int(image.size.height)
                 let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
                 
                 // 保存图片到本地
