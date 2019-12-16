@@ -76,6 +76,9 @@ class ITARGBInputView: NSView {
         return NSFont.systemFont(ofSize: 15)
     }
     
+    /// 输入框是否在删除字符
+    private var deleting = false
+    
     /// RGB变量
     private var red = 0
     private var green = 0
@@ -135,6 +138,14 @@ class ITARGBInputView: NSView {
             } else if textField == blueTextField {
                 blue = rgbValue
             }
+            // R/G/B值输入时,自动跳转至下一输入框
+            if !deleting && isRGBValueInputDone(string: string) {
+                if textField == redTextField {
+                    greenTextField.becomeFirstResponder()
+                } else if textField == greenTextField {
+                    blueTextField.becomeFirstResponder()
+                }
+            }
         }
         
         // 2. 设置输入框文字
@@ -148,18 +159,10 @@ class ITARGBInputView: NSView {
             updateRGBHexTextField(red, green, blue)
         }
         
-        // 3. R/G/B值输入时,自动跳转至下一输入框
-        if textField != rgbHexTextField {
-            if string.count == 3 {
-                if textField == redTextField {
-                    greenTextField.becomeFirstResponder()
-                } else if textField == greenTextField {
-                    blueTextField.becomeFirstResponder()
-                }
-            }
-        }
+        // 用过后即可置为false
+        deleting = false
         
-        // 4. 执行回调
+        // 3. 执行回调
         let color = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         rgbColorHandler?(color, red, green, blue)
     }
@@ -212,6 +215,22 @@ class ITARGBInputView: NSView {
             blue = Int(blueHex)
         }
     }
+    
+    /// R/G/B值是否输入完成
+    /// - Parameter string: 输入框内容
+    func isRGBValueInputDone(string: String) -> Bool {
+        if string.count == 2 { // 输入完2个数字后,若第一个数字大于2,自动跳转至下一输入框
+            let index = string.index(string.startIndex, offsetBy: 1)
+            let firstChar = string[..<index]
+            let firstNum = Int(firstChar) ?? 0
+            if firstNum > 2 {
+                return true
+            }
+        } else if string.count == 3 { // 输入完3个数字后,自动跳转至下一输入框
+            return true
+        }
+        return false
+    }
 }
 
 
@@ -224,7 +243,7 @@ extension ITARGBInputView: NSTextFieldDelegate {
         let tabSel = #selector(NSStandardKeyBindingResponding.insertTab(_:)) // Tab键
         let newlineSel = #selector(NSStandardKeyBindingResponding.insertNewline(_:)) // 换行键
         if commandSelector == deleteSel {
-            
+            deleting = true
         } else if commandSelector == tabSel {
             
         } else if commandSelector == newlineSel {
