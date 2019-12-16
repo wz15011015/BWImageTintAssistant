@@ -123,12 +123,18 @@ class ITARGBInputView: NSView {
             let valid = verifyIntNumberString(string: str)
             if !valid {
                 print("输入内容为不合法的数字")
+                if !deleting {
+                    window?.makeFirstResponder(nil) // 取消响应者
+                }
                 return
             }
             // 范围: 0~255
             let rgbValue = Int(str) ?? 0
             if rgbValue < 0 || rgbValue > 255 {
                 print("输入值范围需为: 0~255")
+                if !deleting {
+                    window?.makeFirstResponder(nil) // 取消响应者
+                }
                 return
             }
             if textField == redTextField {
@@ -144,6 +150,8 @@ class ITARGBInputView: NSView {
                     greenTextField.becomeFirstResponder()
                 } else if textField == greenTextField {
                     blueTextField.becomeFirstResponder()
+                } else if textField == blueTextField {
+                    window?.makeFirstResponder(nil) // 取消响应者
                 }
             }
         }
@@ -174,6 +182,9 @@ class ITARGBInputView: NSView {
         let valid = verifyHexString(string: text)
         if !valid {
             print("输入内容为不合法的十六进制数字")
+            if !deleting {
+                window?.makeFirstResponder(nil) // 取消响应者
+            }
             return
         }
         
