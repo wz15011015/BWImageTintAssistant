@@ -76,7 +76,7 @@ class ITARGBInputView: NSView {
         return NSFont.systemFont(ofSize: 15)
     }
     
-    // RGB变量
+    /// RGB变量
     private var red = 0
     private var green = 0
     private var blue = 0
@@ -148,7 +148,18 @@ class ITARGBInputView: NSView {
             updateRGBHexTextField(red, green, blue)
         }
         
-        // 3. 执行回调
+        // 3. R/G/B值输入时,自动跳转至下一输入框
+        if textField != rgbHexTextField {
+            if string.count == 3 {
+                if textField == redTextField {
+                    greenTextField.becomeFirstResponder()
+                } else if textField == greenTextField {
+                    blueTextField.becomeFirstResponder()
+                }
+            }
+        }
+        
+        // 4. 执行回调
         let color = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         rgbColorHandler?(color, red, green, blue)
     }
@@ -208,6 +219,20 @@ class ITARGBInputView: NSView {
 
 extension ITARGBInputView: NSTextFieldDelegate {
     
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        let deleteSel = #selector(NSStandardKeyBindingResponding.deleteBackward(_:)) // 删除键
+        let tabSel = #selector(NSStandardKeyBindingResponding.insertTab(_:)) // Tab键
+        let newlineSel = #selector(NSStandardKeyBindingResponding.insertNewline(_:)) // 换行键
+        if commandSelector == deleteSel {
+            
+        } else if commandSelector == tabSel {
+            
+        } else if commandSelector == newlineSel {
+            
+        }
+        
+        return false
+    }
 }
 
 
