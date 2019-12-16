@@ -151,6 +151,17 @@ class ITARGBInputView: UIView {
             } else if textField == blueTextField {
                 blue = Int(text) ?? 0
             }
+            
+            // R/G/B值输入时,自动跳转至下一输入框
+            if isRGBValueInputDone(string: text) {
+                if textField == redTextField {
+                    greenTextField.becomeFirstResponder()
+                } else if textField == greenTextField {
+                    blueTextField.becomeFirstResponder()
+                } else if textField == blueTextField {
+                    blueTextField.resignFirstResponder()
+                }
+            }
         }
         
         // 2. 设置输入框文字
@@ -207,6 +218,22 @@ class ITARGBInputView: UIView {
             green = Int(greenHex)
             blue = Int(blueHex)
         }
+    }
+    
+    /// R/G/B值是否输入完成
+    /// - Parameter string: 输入框内容
+    func isRGBValueInputDone(string: String) -> Bool {
+        if string.count == 2 { // 输入完2个数字后,若第一个数字大于2,自动跳转至下一输入框
+            let index = string.index(string.startIndex, offsetBy: 1)
+            let firstChar = string[..<index]
+            let firstNum = Int(firstChar) ?? 0
+            if firstNum > 2 {
+                return true
+            }
+        } else if string.count == 3 { // 输入完3个数字后,自动跳转至下一输入框
+            return true
+        }
+        return false
     }
     
     /*
