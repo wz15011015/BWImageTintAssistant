@@ -1,0 +1,20 @@
+/* 
+  InfoPlist.strings
+  ImageTintAssistant-Mac
+
+  Created by hadlinks on 2019/12/23.
+  Copyright © 2019 BTStudio. All rights reserved.
+*/
+
+// 在状态栏及"关于"中显示
+// 在Info.plist中添加"Bundle name"项,并设置为: $(PRODUCT_NAME)
+CFBundleName = "图标着色助手";
+
+// 在Docker栏中显示
+// 1. 在Info.plist中添加 "Bundle display name" 项,并设置为: $(PRODUCT_NAME)
+// 2. 项目"Build Settings"的"Product Name"项设置为: CFBundleDisplayName
+CFBundleDisplayName = "图标着色助手";
+
+//CFBundleShortVersionString = "";
+
+NSHumanReadableCopyright = "Copyright © 2019 奔腾工作室. All rights reserved.";

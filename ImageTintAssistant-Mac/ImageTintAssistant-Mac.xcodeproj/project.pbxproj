@@ -14,6 +14,7 @@
 		06865C7323850B6200AD9C5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06865C7223850B6200AD9C5A /* AppDelegate.swift */; };
 		06865C7723850B6800AD9C5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06865C7623850B6800AD9C5A /* Assets.xcassets */; };
 		06865C7A23850B6800AD9C5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06865C7823850B6800AD9C5A /* Main.storyboard */; };
+		0686A2C923B0A7AA00521016 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0686A2CB23B0A7AA00521016 /* InfoPlist.strings */; };
 		06DE4E682385362300F514B2 /* example_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DE4E672385362300F514B2 /* example_icon.png */; };
 		06DE4E6C2385365000F514B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE4E6B2385365000F514B2 /* ViewController.swift */; };
 /* End PBXBuildFile section */
@@ -25,12 +26,14 @@
 		065B6658238634140009F545 /* ITARGBInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
 		065B665B2386391B0009F545 /* ITACommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
 		065B665D238687B40009F545 /* NSImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Helper.swift"; sourceTree = "<group>"; };
-		06865C6F23850B6200AD9C5A /* 图标着色助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "图标着色助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06865C6F23850B6200AD9C5A /* CFBundleDisplayName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CFBundleDisplayName.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06865C7223850B6200AD9C5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06865C7623850B6800AD9C5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06865C7923850B6800AD9C5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		06865C7B23850B6900AD9C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06865C7C23850B6900AD9C5A /* ImageTintAssistant_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImageTintAssistant_Mac.entitlements; sourceTree = "<group>"; };
+		0686A2CA23B0A7AA00521016 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0686A2CC23B0A7AB00521016 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		06DE4E672385362300F514B2 /* example_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_icon.png; sourceTree = "<group>"; };
 		06DE4E6B2385365000F514B2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +77,7 @@
 		06865C7023850B6200AD9C5A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06865C6F23850B6200AD9C5A /* 图标着色助手.app */,
+				06865C6F23850B6200AD9C5A /* CFBundleDisplayName.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +94,7 @@
 				06865C7623850B6800AD9C5A /* Assets.xcassets */,
 				06865C7B23850B6900AD9C5A /* Info.plist */,
 				060317BB23A1DD7A0033D7CD /* Localizable.strings */,
+				0686A2CB23B0A7AA00521016 /* InfoPlist.strings */,
 			);
 			path = "ImageTintAssistant-Mac";
 			sourceTree = "<group>";
@@ -145,7 +149,7 @@
 			);
 			name = "ImageTintAssistant-Mac";
 			productName = "ImageTintAssistant-Mac";
-			productReference = 06865C6F23850B6200AD9C5A /* 图标着色助手.app */;
+			productReference = 06865C6F23850B6200AD9C5A /* CFBundleDisplayName.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -192,6 +196,7 @@
 				060317B923A1DD7A0033D7CD /* Localizable.strings in Resources */,
 				06DE4E682385362300F514B2 /* example_icon.png in Resources */,
 				06865C7A23850B6800AD9C5A /* Main.storyboard in Resources */,
+				0686A2C923B0A7AA00521016 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +234,15 @@
 				060317B623A1DD510033D7CD /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0686A2CB23B0A7AA00521016 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0686A2CA23B0A7AA00521016 /* en */,
+				0686A2CC23B0A7AB00521016 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -289,6 +303,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -343,6 +358,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -363,9 +379,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
-				PRODUCT_NAME = "图标着色助手";
+				PRODUCT_NAME = CFBundleDisplayName;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -384,9 +400,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
-				PRODUCT_NAME = "图标着色助手";
+				PRODUCT_NAME = CFBundleDisplayName;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
