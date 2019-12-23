@@ -163,6 +163,7 @@ extension ViewController {
         
         // 图片着色
         tintImage = NSImage(sourceImage: originalImage, tintColor: tintColor)
+//        tintImage = NSImage(sourceImage: originalImage, radius: 140)
         
         // 显示着色图片
         tintedImageButton.image = tintImage

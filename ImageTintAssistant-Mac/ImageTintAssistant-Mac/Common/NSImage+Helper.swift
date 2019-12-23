@@ -69,4 +69,41 @@ extension NSImage {
         sourceImage.draw(in: targetRect, from: fromRect, operation: .destinationIn, fraction: 1.0)
         unlockFocus()
     }
+    
+    /// 给图片添加圆角
+    /// - Parameter sourceImage: 源图片
+    /// - Parameter radius: 圆角半径
+    convenience init?(sourceImage: NSImage, radius: CGFloat) {
+        let size = sourceImage.size
+        
+        if let cgImageRef = sourceImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+            // 获取实际像素大小 (通过CGImage获取)
+            let pixelSize = NSSize(width: cgImageRef.width, height: cgImageRef.height)
+            
+            // 1. 目标图像尺寸
+            let screenScale: CGFloat = 2.0 // 屏幕倍数(几倍屏)
+            let targetSize = NSSize(width: pixelSize.width / screenScale, height: pixelSize.height / screenScale)
+            let targetRect = NSRect(x: 0, y: 0, width: targetSize.width, height: targetSize.height)
+            
+            // 2. 初始化图像
+            self.init(size: targetSize)
+            
+            // 3. 创建目标图像并绘制
+            // lockFocus()使用屏幕属性,普通屏幕为 72dpi,视网膜屏幕为 144dpi
+            lockFocus()
+            
+            // 创建裁切路径
+            let path = NSBezierPath(roundedRect: targetRect, xRadius: radius, yRadius: radius)
+            // 添加裁切路径
+            path.addClip()
+            // 绘制图像
+            let cgContext = NSGraphicsContext.current?.cgContext
+            cgContext?.draw(cgImageRef, in: targetRect)
+            
+            unlockFocus()
+        } else {
+            // 初始化图像
+            self.init(size: size)
+        }
+    }
 }
