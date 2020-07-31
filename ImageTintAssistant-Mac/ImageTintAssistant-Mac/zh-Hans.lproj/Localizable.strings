@@ -2,7 +2,7 @@
   Localizable.strings
   ImageTintAssistant-Mac
 
-  Created by hadlinks on 2019/12/12.
+  Created by wangzhi on 2019/12/12.
   Copyright © 2019 BTStudio. All rights reserved.
 */
 
@@ -16,3 +16,5 @@
 "Save"   = "保存";
 "Save the tinted icon" = "保存着色后的图标";
 "Select" = "选择";
+
+"The input value range needs to be: 0 to 255" = "输入值范围需为: 0~255";

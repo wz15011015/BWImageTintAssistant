@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  ImageTintAssistant-Mac
 //
-//  Created by hadlinks on 2019/11/20.
+//  Created by wangzhi on 2019/11/20.
 //  Copyright © 2019 BTStudio. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    // 应用程序名称默认为TARGET名称,可以在Building Setting --> Product Nmae 中修改.
+    // 应用程序名称默认为TARGET名称,可以在Building Setting --> Product Name 中修改.
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application

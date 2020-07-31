@@ -2,7 +2,7 @@
 //  ITARGBInputView.swift
 //  ImageTintAssistant-Mac
 //
-//  Created by hadlinks on 2019/11/21.
+//  Created by wangzhi on 2019/11/21.
 //  Copyright © 2019 BTStudio. All rights reserved.
 //
 
@@ -136,8 +136,8 @@ class ITARGBInputView: NSView {
             }
             // 范围: 0~255
             let rgbValue = Int(str) ?? 0
-            if rgbValue < 0 || rgbValue > 255 {
-                print("输入值范围需为: 0~255")
+            if rgbValue < 0 || rgbValue > 255 { // 输入值范围需为: 0~255
+                BWHUDView.show(message: NSLocalizedString("The input value range needs to be: 0 to 255", comment: ""), type: .failure)
                 if !deleting {
                     window?.makeFirstResponder(nil) // 取消响应者
                 }

@@ -40,6 +40,7 @@ class BWHUDView: NSView {
         text.textColor = NSColor.white
         text.font = NSFont.systemFont(ofSize: 17)
         text.alignment = .center
+        text.isSelectable = false
         text.backgroundColor = NSColor.clear
         text.isVerticallyResizable = true
         return text
@@ -136,6 +137,11 @@ class BWHUDView: NSView {
     /// - Parameter type: 显示类型, 默认为Success
     /// - Parameter delay: 几秒后隐藏, 默认时长为2秒
     class func show(message msg: String = "", type status: BWHUDStatus = .success, hideDelay delay: TimeInterval = 1.2) {
+        // 显示新的HUD前,先移除一下HUD,确保不会重复显示
+        if BWHUDView.isShowing {
+            BWHUDView.dismiss()
+        }
+        
         guard let mainWindow = NSApp.mainWindow else { return }
         
         // 1. 初始化
@@ -228,8 +234,7 @@ extension BWHUDView {
     /// 打开本应用程序 / 切换至本应用程序
     /// - Parameter notification: 通知
     @objc func applicationWillBecomeActive(_ notification: Notification) {
-        // 隐藏HUD
-        BWHUDView.dismiss()
+        
     }
 }
 
