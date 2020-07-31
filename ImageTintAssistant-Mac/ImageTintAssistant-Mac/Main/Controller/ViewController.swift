@@ -44,6 +44,11 @@ class ViewController: NSViewController {
             self.tintButton.wantsLayer = true
             self.tintButton.layer?.backgroundColor = tintColor.cgColor
         }
+        
+        // RGB值确认的回调
+        rgbView.rgbColorConfirmHandler = { (color: NSColor, red: Int, green: Int, blue: Int) in
+            self.tintImageEvent(self.tintButton)
+        }
     }
 
     override var representedObject: Any? {
@@ -185,7 +190,7 @@ extension ViewController {
         panel.message = NSLocalizedString("Save the tinted icon", comment: "")
         panel.prompt = NSLocalizedString("Save", comment: "")
         panel.allowedFileTypes = ["png"]
-        panel.nameFieldStringValue = "tint_image_RGB(\(red),\(green),\(blue))" // 默认保存文件名
+        panel.nameFieldStringValue = "tint_image_\(red)_\(green)_\(blue)" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
                 return

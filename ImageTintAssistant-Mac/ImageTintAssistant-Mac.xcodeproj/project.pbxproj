@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		060317B923A1DD7A0033D7CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060317BB23A1DD7A0033D7CD /* Localizable.strings */; };
+		06534DB524D3AFAA001C7B8A /* BWHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06534DB324D3AFAA001C7B8A /* BWHUDView.swift */; };
+		06534DB624D3AFAA001C7B8A /* BWHUDResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06534DB424D3AFAA001C7B8A /* BWHUDResource.bundle */; };
 		065B6659238634140009F545 /* ITARGBInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B6658238634140009F545 /* ITARGBInputView.swift */; };
 		065B665C2386391B0009F545 /* ITACommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B665B2386391B0009F545 /* ITACommon.swift */; };
 		065B665E238687B40009F545 /* NSImage+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B665D238687B40009F545 /* NSImage+Helper.swift */; };
@@ -23,6 +25,8 @@
 		060317B623A1DD510033D7CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		060317BA23A1DD7A0033D7CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		060317BC23A1DD7C0033D7CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		06534DB324D3AFAA001C7B8A /* BWHUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWHUDView.swift; sourceTree = "<group>"; };
+		06534DB424D3AFAA001C7B8A /* BWHUDResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BWHUDResource.bundle; sourceTree = "<group>"; };
 		065B6658238634140009F545 /* ITARGBInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
 		065B665B2386391B0009F545 /* ITACommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
 		065B665D238687B40009F545 /* NSImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Helper.swift"; sourceTree = "<group>"; };
@@ -49,6 +53,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06534DB124D3AFAA001C7B8A /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				06534DB224D3AFAA001C7B8A /* BWHUDView */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		06534DB224D3AFAA001C7B8A /* BWHUDView */ = {
+			isa = PBXGroup;
+			children = (
+				06534DB324D3AFAA001C7B8A /* BWHUDView.swift */,
+				06534DB424D3AFAA001C7B8A /* BWHUDResource.bundle */,
+			);
+			path = BWHUDView;
+			sourceTree = "<group>";
+		};
 		065B6657238633860009F545 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +112,7 @@
 				06DE4E692385365000F514B2 /* Main */,
 				065B665A238639050009F545 /* Common */,
 				06DE4E652385362300F514B2 /* Resources */,
+				06534DB124D3AFAA001C7B8A /* Vendors */,
 				06865C7623850B6800AD9C5A /* Assets.xcassets */,
 				06865C7B23850B6900AD9C5A /* Info.plist */,
 				060317BB23A1DD7A0033D7CD /* Localizable.strings */,
@@ -192,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06534DB624D3AFAA001C7B8A /* BWHUDResource.bundle in Resources */,
 				06865C7723850B6800AD9C5A /* Assets.xcassets in Resources */,
 				060317B923A1DD7A0033D7CD /* Localizable.strings in Resources */,
 				06DE4E682385362300F514B2 /* example_icon.png in Resources */,
@@ -210,6 +233,7 @@
 				065B6659238634140009F545 /* ITARGBInputView.swift in Sources */,
 				065B665C2386391B0009F545 /* ITACommon.swift in Sources */,
 				06DE4E6C2385365000F514B2 /* ViewController.swift in Sources */,
+				06534DB524D3AFAA001C7B8A /* BWHUDView.swift in Sources */,
 				06865C7323850B6200AD9C5A /* AppDelegate.swift in Sources */,
 				065B665E238687B40009F545 /* NSImage+Helper.swift in Sources */,
 			);
@@ -379,7 +403,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
 				PRODUCT_NAME = "ImageTintAssistant-Mac";
 				SWIFT_VERSION = 5.0;
@@ -400,7 +424,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
 				PRODUCT_NAME = "ImageTintAssistant-Mac";
 				SWIFT_VERSION = 5.0;

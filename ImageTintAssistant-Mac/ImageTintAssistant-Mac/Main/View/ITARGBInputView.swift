@@ -87,6 +87,11 @@ class ITARGBInputView: NSView {
     /// RGB颜色值回调
     var rgbColorHandler: ((_ color: NSColor, _ red: Int, _ green: Int, _ blue: Int) -> ())?
     
+    /// RGB颜色值确认的回调
+    ///
+    /// 在输入状态时,按下 回车键 会执行此回调
+    var rgbColorConfirmHandler: ((_ color: NSColor, _ red: Int, _ green: Int, _ blue: Int) -> ())?
+    
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -121,8 +126,9 @@ class ITARGBInputView: NSView {
         } else {
             let str = string.isEmpty ? "0" : string // 当删除所有字符时,把值看做为0
             let valid = verifyIntNumberString(string: str)
-            if !valid {
-                print("输入内容为不合法的数字")
+            if !valid { // 输入的内容为不合法的数字
+                BWHUDView.show(message: NSLocalizedString("Please enter the number, the range 0 to 255", comment: ""), type: .failure)
+                
                 if !deleting {
                     window?.makeFirstResponder(nil) // 取消响应者
                 }
@@ -180,8 +186,9 @@ class ITARGBInputView: NSView {
     /// - Parameter text: 十六进制字符串
     func resolveRGBFrom(hexString text: String) {
         let valid = verifyHexString(string: text)
-        if !valid {
-            print("输入内容为不合法的十六进制数字")
+        if !valid { // 输入的内容为不合法的十六进制数字
+            BWHUDView.show(message: NSLocalizedString("Please enter the hex color value", comment: ""), type: .failure)
+            
             if !deleting {
                 window?.makeFirstResponder(nil) // 取消响应者
             }
@@ -258,7 +265,9 @@ extension ITARGBInputView: NSTextFieldDelegate {
         } else if commandSelector == tabSel {
             
         } else if commandSelector == newlineSel {
-            
+            // 按下回车键,执行颜色值确认的回调
+            let color = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
+            rgbColorConfirmHandler?(color, red, green, blue)
         }
         
         return false

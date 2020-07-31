@@ -9,6 +9,8 @@
 "Click to add icon"  = "Click to add icon";
 "Click to save icon" = "Click to save icon";
 
+"Please enter the hex color value" = "Please enter the hex color value";
+"Please enter the number, the range 0 to 255" = "Please enter the number, the range 0 to 255";
 "Please select the icon to be tint" = "Please select the icon to be tint";
 
 "Save"   = "Save";
