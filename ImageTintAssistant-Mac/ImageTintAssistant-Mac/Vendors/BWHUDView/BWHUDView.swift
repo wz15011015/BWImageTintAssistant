@@ -9,6 +9,17 @@ import Foundation
 import Cocoa
 
 
+// MARK: - 颜色
+
+private func BWRGBAColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> NSColor {
+    return NSColor(red: red / 255.0, green: green / 255.0, blue: blue / 255.0, alpha: alpha)
+}
+
+private func BWRGBColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat) -> NSColor {
+    return BWRGBAColor(red, green, blue, 1.0)
+}
+
+
 private let BWHUDViewTag = 980665
 
 /// HUD视图的宽度
@@ -119,11 +130,11 @@ class BWHUDView: NSView {
         super.draw(dirtyRect)
 
         // Dark Mode 适配
-        var color = RGBAColor(88, 88, 88, 0.99)
+        var color = BWRGBAColor(88, 88, 88, 0.99)
         if appearanceIsDarkMode() {
-            color = RGBAColor(88, 88, 88, 0.99)
+            color = BWRGBAColor(88, 88, 88, 0.99)
         } else {
-            color = RGBAColor(88, 88, 88, 0.8)
+            color = BWRGBAColor(88, 88, 88, 0.8)
         }
         wantsLayer = true
         layer?.backgroundColor = color.cgColor
@@ -190,7 +201,7 @@ extension BWHUDView {
         let height = BWHUDViewWidth
         frame = NSRect(x: (windowW - width) / 2.0, y: (windowH - height) / 2.0, width: width, height: height)
         wantsLayer = true
-        layer?.backgroundColor = RGBColor(88, 88, 88).cgColor
+        layer?.backgroundColor = BWRGBColor(88, 88, 88).cgColor
         layer?.cornerRadius = 6
         
         // 2. 添加子控件
