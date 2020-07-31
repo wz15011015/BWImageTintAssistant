@@ -119,17 +119,16 @@ class ITARGBInputView: NSView {
         guard let textField = obj.object as? NSTextField else { return }
 
         let string = textField.stringValue
+        let str = string.isEmpty ? "0" : string // 当删除所有字符时,把值看做为0
         
         // 1. 解析RGB值
         if textField == rgbHexTextField {
-            resolveRGBFrom(hexString: string)
+            resolveRGBFrom(hexString: str)
         } else {
-            let str = string.isEmpty ? "0" : string // 当删除所有字符时,把值看做为0
             let valid = verifyIntNumberString(string: str)
             if !valid { // 输入的内容为不合法的数字
-                BWHUDView.show(message: NSLocalizedString("Please enter the number, the range 0 to 255", comment: ""), type: .failure)
-                
                 if !deleting {
+                    BWHUDView.show(message: NSLocalizedString("Please enter the number, the range 0 to 255", comment: ""), type: .failure)
                     window?.makeFirstResponder(nil) // 取消响应者
                 }
                 return
@@ -137,8 +136,8 @@ class ITARGBInputView: NSView {
             // 范围: 0~255
             let rgbValue = Int(str) ?? 0
             if rgbValue < 0 || rgbValue > 255 { // 输入值范围需为: 0~255
-                BWHUDView.show(message: NSLocalizedString("The input value range needs to be: 0 to 255", comment: ""), type: .failure)
                 if !deleting {
+                    BWHUDView.show(message: NSLocalizedString("The input value range needs to be: 0 to 255", comment: ""), type: .failure)
                     window?.makeFirstResponder(nil) // 取消响应者
                 }
                 return
@@ -187,9 +186,8 @@ class ITARGBInputView: NSView {
     func resolveRGBFrom(hexString text: String) {
         let valid = verifyHexString(string: text)
         if !valid { // 输入的内容为不合法的十六进制数字
-            BWHUDView.show(message: NSLocalizedString("Please enter the hex color value", comment: ""), type: .failure)
-            
             if !deleting {
+                BWHUDView.show(message: NSLocalizedString("Please enter the hex color value", comment: ""), type: .failure)
                 window?.makeFirstResponder(nil) // 取消响应者
             }
             return
