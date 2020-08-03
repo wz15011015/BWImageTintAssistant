@@ -13,15 +13,21 @@ class ViewController: NSViewController {
     @IBOutlet var originalImageButton: NSButton! // 原始图片
     @IBOutlet var rgbView: ITARGBInputView!; // 颜色值输入视图
     @IBOutlet var tintButton: NSButton! // 着色按钮
-    @IBOutlet var tintedImageButton: NSButton! // 着色后图片
+    @IBOutlet var cornerRadiusTextField: NSTextField! // 圆角半径输入框
+    @IBOutlet var editedImageButton: NSButton! // 编辑后的图片
     
     private var originalImage: NSImage? // 原图片
     private var tintImage: NSImage? // 着色图片
+    private var cornerRadiusImage: NSImage? // 圆角图片
     
     // 着色颜色RGB值
     private var red: Int = 0
     private var green: Int = 0
     private var blue: Int = 0
+    
+    // 圆角半径
+    private var cornerRadius: Float = 0.0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +35,7 @@ class ViewController: NSViewController {
         setupUI()
         
         // 初始化
-        originalImage = NSImage(named: "example_icon.png")
+        originalImage = NSImage(named: "add_icon.png")
         
         // RGB值改变时的回调
         rgbView.rgbColorHandler = { (color: NSColor, red: Int, green: Int, blue: Int) in
@@ -100,16 +106,16 @@ class ViewController: NSViewController {
         
         if isDarkMode() {
             vcBackgroundColor = RGBColor(42, 43, 43)
-            iconImageBackgroundColor = RGBColor(52, 53, 53)
+            iconImageBackgroundColor = RGBColor(82, 83, 83)
         }
         
         view.wantsLayer = true
         view.layer?.backgroundColor = vcBackgroundColor.cgColor
         
         originalImageButton.wantsLayer = true
-        tintedImageButton.wantsLayer = true
+        editedImageButton.wantsLayer = true
         originalImageButton.layer?.backgroundColor = iconImageBackgroundColor.cgColor
-        tintedImageButton.layer?.backgroundColor = iconImageBackgroundColor.cgColor
+        editedImageButton.layer?.backgroundColor = iconImageBackgroundColor.cgColor
     }
 }
 
@@ -125,6 +131,13 @@ private extension ViewController {
         // 着色按钮背景色初始化为黑色
         tintButton.wantsLayer = true
         tintButton.layer?.backgroundColor = NSColor.black.cgColor
+        
+        // 设置输入框代理
+        cornerRadiusTextField.delegate = self
+        cornerRadiusTextField.placeholderString = NSLocalizedString("Enter the corner radius and press enter", comment: "")
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        cornerRadiusTextField.formatter = formatter
     }
 }
 
@@ -168,17 +181,16 @@ extension ViewController {
         
         // 图片着色
         tintImage = NSImage(sourceImage: originalImage, tintColor: tintColor)
-//        tintImage = NSImage(sourceImage: originalImage, radius: 140)
         
         // 显示着色图片
-        tintedImageButton.image = tintImage
+        editedImageButton.image = tintImage
         
         // 设置点击时的图片
         /// 当按钮类型为Momentary Change时,设置image和alternateImage为同一个图片,
         /// 即可实现点击时不显示高亮效果.
-        tintedImageButton.alternateImage = tintImage
+        editedImageButton.alternateImage = tintImage
         // 设置按钮的鼠标悬停提示文字
-        tintedImageButton.toolTip = NSLocalizedString("Click to save icon", comment: "")
+        editedImageButton.toolTip = NSLocalizedString("Click to save icon", comment: "")
     }
     
     /// 导出着色图片事件
@@ -216,5 +228,78 @@ extension ViewController {
                 try? pngData?.write(to: url)
             }
         }
+    }
+    
+    /// 图片添加圆角
+    func cornerRadiusImage(radius: Float) {
+        if radius <= 0 {
+            return
+        }
+        
+        guard let originalImage = originalImage else { return }
+        print("图片添加圆角: 图片大小 = (\(originalImage.size.width), \(originalImage.size.height))")
+        
+        let length = Float(max(originalImage.size.width, originalImage.size.height))
+        if radius > (length * 0.5) {
+            BWHUDView.show(message: NSLocalizedString("The corner radius is too large", comment: ""), type: .failure)
+            return
+        }
+        
+        // 图片添加圆角
+        cornerRadiusImage = NSImage(sourceImage: originalImage, radius: CGFloat(radius))
+        
+        // 显示圆角图片
+        editedImageButton.image = cornerRadiusImage
+        
+        // 设置点击时的图片
+        /// 当按钮类型为Momentary Change时,设置image和alternateImage为同一个图片,
+        /// 即可实现点击时不显示高亮效果.
+        editedImageButton.alternateImage = cornerRadiusImage
+        // 设置按钮的鼠标悬停提示文字
+        editedImageButton.toolTip = NSLocalizedString("Click to save icon", comment: "")
+    }
+    
+    /// 导出圆角图片事件
+    func saveCornerRadiusImageEvent() {
+        guard cornerRadiusImage != nil else { return }
+        
+        // 文件保存面板
+        let panel = NSSavePanel()
+        panel.message = NSLocalizedString("Save the round icon", comment: "")
+        panel.prompt = NSLocalizedString("Save", comment: "")
+        panel.allowedFileTypes = ["png"]
+        panel.nameFieldStringValue = "round_image_\(cornerRadius)" // 默认保存文件名
+        panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
+            if response != .OK {
+                return
+            }
+            guard let url = panel.url else {
+                return
+            }
+            
+            if let image = self.cornerRadiusImage,
+                let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
+                let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
+                // 保存图片到本地
+                try? pngData?.write(to: url)
+            }
+        }
+    }
+}
+
+
+// MARK: - NSTextFieldDelegate
+
+extension ViewController: NSTextFieldDelegate {
+    
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        let newlineSel = #selector(NSStandardKeyBindingResponding.insertNewline(_:)) // 换行键
+        if commandSelector == newlineSel {
+            cornerRadius = cornerRadiusTextField.floatValue
+            cornerRadiusImage(radius: cornerRadius)
+        }
+        
+        return false
     }
 }

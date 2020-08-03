@@ -10,6 +10,7 @@
 		060317B923A1DD7A0033D7CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 060317BB23A1DD7A0033D7CD /* Localizable.strings */; };
 		06534DB524D3AFAA001C7B8A /* BWHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06534DB324D3AFAA001C7B8A /* BWHUDView.swift */; };
 		06534DB624D3AFAA001C7B8A /* BWHUDResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 06534DB424D3AFAA001C7B8A /* BWHUDResource.bundle */; };
+		0657CAFD24D7E6B40054AB51 /* add_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0657CAFC24D7E6B40054AB51 /* add_icon.png */; };
 		065B6659238634140009F545 /* ITARGBInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B6658238634140009F545 /* ITARGBInputView.swift */; };
 		065B665C2386391B0009F545 /* ITACommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B665B2386391B0009F545 /* ITACommon.swift */; };
 		065B665E238687B40009F545 /* NSImage+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B665D238687B40009F545 /* NSImage+Helper.swift */; };
@@ -17,7 +18,6 @@
 		06865C7723850B6800AD9C5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06865C7623850B6800AD9C5A /* Assets.xcassets */; };
 		06865C7A23850B6800AD9C5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06865C7823850B6800AD9C5A /* Main.storyboard */; };
 		0686A2C923B0A7AA00521016 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0686A2CB23B0A7AA00521016 /* InfoPlist.strings */; };
-		06DE4E682385362300F514B2 /* example_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DE4E672385362300F514B2 /* example_icon.png */; };
 		06DE4E6C2385365000F514B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DE4E6B2385365000F514B2 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +27,7 @@
 		060317BC23A1DD7C0033D7CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		06534DB324D3AFAA001C7B8A /* BWHUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWHUDView.swift; sourceTree = "<group>"; };
 		06534DB424D3AFAA001C7B8A /* BWHUDResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BWHUDResource.bundle; sourceTree = "<group>"; };
+		0657CAFC24D7E6B40054AB51 /* add_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_icon.png; sourceTree = "<group>"; };
 		065B6658238634140009F545 /* ITARGBInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITARGBInputView.swift; sourceTree = "<group>"; };
 		065B665B2386391B0009F545 /* ITACommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITACommon.swift; sourceTree = "<group>"; };
 		065B665D238687B40009F545 /* NSImage+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Helper.swift"; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		06865C7C23850B6900AD9C5A /* ImageTintAssistant_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ImageTintAssistant_Mac.entitlements; sourceTree = "<group>"; };
 		0686A2CA23B0A7AA00521016 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0686A2CC23B0A7AB00521016 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		06DE4E672385362300F514B2 /* example_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_icon.png; sourceTree = "<group>"; };
 		06DE4E6B2385365000F514B2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,7 +132,7 @@
 		06DE4E662385362300F514B2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				06DE4E672385362300F514B2 /* example_icon.png */,
+				0657CAFC24D7E6B40054AB51 /* add_icon.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -217,9 +217,9 @@
 				06534DB624D3AFAA001C7B8A /* BWHUDResource.bundle in Resources */,
 				06865C7723850B6800AD9C5A /* Assets.xcassets in Resources */,
 				060317B923A1DD7A0033D7CD /* Localizable.strings in Resources */,
-				06DE4E682385362300F514B2 /* example_icon.png in Resources */,
 				06865C7A23850B6800AD9C5A /* Main.storyboard in Resources */,
 				0686A2C923B0A7AA00521016 /* InfoPlist.strings in Resources */,
+				0657CAFD24D7E6B40054AB51 /* add_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +403,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
 				PRODUCT_NAME = "ImageTintAssistant-Mac";
 				SWIFT_VERSION = 5.0;
@@ -424,7 +424,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BTStudio.ImageTintAssistant-Mac";
 				PRODUCT_NAME = "ImageTintAssistant-Mac";
 				SWIFT_VERSION = 5.0;

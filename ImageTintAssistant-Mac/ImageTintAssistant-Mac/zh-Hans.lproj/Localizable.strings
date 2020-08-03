@@ -9,6 +9,8 @@
 "Click to add icon"  = "点击以添加图标";
 "Click to save icon" = "点击以保存图标";
 
+"Enter the corner radius and press enter" = "输入圆角半径，按下回车键";
+
 "Please enter the hex color value" = "请输入十六进制颜色值";
 "Please enter the number, the range 0 to 255" = "请输入数字，范围0~255";
 "Please select the icon to be tint" = "请选择要着色的图标";
@@ -17,4 +19,5 @@
 "Save the tinted icon" = "保存着色后的图标";
 "Select" = "选择";
 
+"The corner radius is too large" = "圆角半径太大";
 "The input value range needs to be: 0 to 255" = "输入值范围需为: 0~255";
