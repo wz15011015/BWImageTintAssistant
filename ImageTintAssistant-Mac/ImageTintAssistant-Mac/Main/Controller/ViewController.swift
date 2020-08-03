@@ -28,6 +28,9 @@ class ViewController: NSViewController {
     // 圆角半径
     private var cornerRadius: Float = 0.0
     
+    /// 是否为着色状态
+    private var isTintState = true
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,6 +179,9 @@ extension ViewController {
     @IBAction func tintImageEvent(_ sender: NSButton) {
         guard let originalImage = originalImage else { return }
         
+        // 设置为着色状态
+        isTintState = true
+        
         // 着色颜色
         let tintColor = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         
@@ -195,6 +201,11 @@ extension ViewController {
     
     /// 导出着色图片事件
     @IBAction func saveImageEvent(_ sender: NSButton) {
+        if !isTintState {
+            self.saveCornerRadiusImageEvent()
+            return
+        }
+        
         guard tintImage != nil else { return }
         
         // 文件保存面板
@@ -236,17 +247,20 @@ extension ViewController {
             return
         }
         
-        guard let originalImage = originalImage else { return }
-        print("图片添加圆角: 图片大小 = (\(originalImage.size.width), \(originalImage.size.height))")
+        guard let image = originalImage else { return }
+        print("图片添加圆角: 图片大小 = (\(image.size.width), \(image.size.height))")
         
-        let length = Float(max(originalImage.size.width, originalImage.size.height))
+        let length = Float(max(image.size.width, image.size.height))
         if radius > (length * 0.5) {
             BWHUDView.show(message: NSLocalizedString("The corner radius is too large", comment: ""), type: .failure)
             return
         }
         
+        // 设置为非着色状态
+        isTintState = false
+        
         // 图片添加圆角
-        cornerRadiusImage = NSImage(sourceImage: originalImage, radius: CGFloat(radius))
+        cornerRadiusImage = NSImage(sourceImage: image, radius: CGFloat(radius))
         
         // 显示圆角图片
         editedImageButton.image = cornerRadiusImage
