@@ -248,7 +248,7 @@ extension ViewController {
         }
         
         guard let image = originalImage else { return }
-        print("图片添加圆角: 图片大小 = (\(image.size.width), \(image.size.height))")
+        print("准备添加圆角的图片的大小: (\(image.size.width), \(image.size.height))")
         
         let length = Float(max(image.size.width, image.size.height))
         if radius > (length * 0.5) {

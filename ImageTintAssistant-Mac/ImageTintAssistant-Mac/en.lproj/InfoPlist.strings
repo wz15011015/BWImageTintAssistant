@@ -17,4 +17,4 @@ CFBundleDisplayName = "ImageTintAssistant";
 
 //CFBundleShortVersionString = "";
 
-NSHumanReadableCopyright = "Copyright © 2019 BTStudio. All rights reserved.";
+NSHumanReadableCopyright = "Copyright © 2015-2020 BTStudio. All rights reserved. \n\nhttps://github.com/wz15011015/BWImageTintAssistant";
