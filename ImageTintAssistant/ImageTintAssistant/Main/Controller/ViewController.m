@@ -9,14 +9,20 @@
 #import "ViewController.h"
 #import "ImageTintAssistant-Swift.h"
 #import "ITACommon.h"
+#import "UIImage+BWHelper.h"
+#import "UIColor+BWHelper.h"
+
+static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色调";
 
 @interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *originalImageView; // 原始图片
+@property (nonatomic, strong) UILabel *mainColorLabel; // 图片主色调
 @property (nonatomic, strong) ITARGBInputView *rgbView; // 颜色值输入视图
 @property (nonatomic, strong) UIButton *tintButton; // 着色按钮
 @property (nonatomic, strong) UIImageView *tintedImageView; // 着色后图片
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) UIActivityIndicatorView *loadingView;
 
 @property (nonatomic, strong) UIImage *originalImage; // 原图片
 @property (nonatomic, strong) UIColor *tintColor; // 着色颜色
@@ -63,6 +69,19 @@
     UITapGestureRecognizer *originalTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(originalImageTap:)];
     [self.originalImageView addGestureRecognizer:originalTapGR];
     
+    // 1.1 图片主色调
+    self.mainColorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.originalImageView.frame), SCREEN_WIDTH, 20)];
+    self.mainColorLabel.textAlignment = NSTextAlignmentCenter;
+    self.mainColorLabel.textColor = [UIColor grayColor];
+    self.mainColorLabel.font = [UIFont systemFontOfSize:12];
+    self.mainColorLabel.userInteractionEnabled = YES;
+    self.mainColorLabel.text = MainColorLabelPlaceholder;
+    [self.view addSubview:self.mainColorLabel];
+    
+    UITapGestureRecognizer *mainColorTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mainColorTap)];
+    [self.mainColorLabel addGestureRecognizer:mainColorTapGR];
+    
+    
     // 2. 颜色值输入视图
     self.rgbView = [[ITARGBInputView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.originalImageView.frame) + 20, SCREEN_WIDTH, 80)];
     [self.view addSubview:self.rgbView];
@@ -86,6 +105,17 @@
     
     UITapGestureRecognizer *tintTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tintImageTap:)];
     [self.tintedImageView addGestureRecognizer:tintTapGR];
+    
+    // 5. 转圈指示器
+    if (@available(iOS 13.0, *)) {
+        self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    } else {
+        self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    self.loadingView.frame = self.view.bounds;
+    self.loadingView.center = self.view.center;
+    self.loadingView.color = RGBColor(223, 126, 31);
+    [self.view addSubview:self.loadingView];
     
     
     // 颜色适配Dark Mode
@@ -128,6 +158,13 @@
     originalImageViewFrame.origin.x = (screen_width - CGRectGetWidth(originalImageViewFrame)) / 2.0;
     originalImageViewFrame.origin.y = originalImageViewY;
     self.originalImageView.frame = originalImageViewFrame;
+    
+    CGRect mainColorFrame = self.mainColorLabel.frame;
+    mainColorFrame.origin.x = 0;
+    mainColorFrame.origin.y = CGRectGetMaxY(originalImageViewFrame);
+    mainColorFrame.size.width = screen_width;
+    mainColorFrame.size.height = space;
+    self.mainColorLabel.frame = mainColorFrame;
 
     CGRect rgbViewFrame = self.rgbView.frame;
     rgbViewFrame.origin.x = (screen_width - CGRectGetWidth(rgbViewFrame)) / 2.0;
@@ -143,6 +180,9 @@
     tintedImageViewFrame.origin.x = (screen_width - CGRectGetWidth(tintedImageViewFrame)) / 2.0;
     tintedImageViewFrame.origin.y = CGRectGetMaxY(tintButtonFrame) + space;
     self.tintedImageView.frame = tintedImageViewFrame;
+    
+    self.loadingView.frame = CGRectMake(0, 0, screen_width, screen_height);
+    self.loadingView.center = CGPointMake(screen_width / 2, screen_height / 2);
 }
 
 
@@ -151,6 +191,28 @@
 // 添加要着色图片事件
 - (void)originalImageTap:(UITapGestureRecognizer *)gestureRecognizer {
     [self presentViewController:self.imagePickerController animated:YES completion:nil];
+}
+
+/// 获取图标主色调
+- (void)mainColorTap {
+    [self.loadingView startAnimating];
+    
+    // 切换到新线程中执行
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIColor *mainColor = [self.originalImage mainColor];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDictionary *rgbDic = [mainColor getRGBDictionary];
+            int red   = [rgbDic[@"R"] intValue];
+            int green = [rgbDic[@"G"] intValue];
+            int blue  = [rgbDic[@"B"] intValue];
+            int alpha = [rgbDic[@"A"] intValue];
+            self.mainColorLabel.text = [NSString stringWithFormat:@"(%d, %d, %d, %d)", red, green, blue, alpha];
+            self.mainColorLabel.userInteractionEnabled = NO;
+            
+            [self.loadingView stopAnimating];
+        });
+    });
 }
 
 // 着色事件
@@ -225,6 +287,9 @@
     UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     self.originalImage = originalImage;
     self.originalImageView.image = self.originalImage;
+    
+    self.mainColorLabel.text = MainColorLabelPlaceholder;
+    self.mainColorLabel.userInteractionEnabled = YES;
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

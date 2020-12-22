@@ -44,7 +44,15 @@
 #define IS_IPHONE_X  (IS_IPHONE && SCREEN_MAX_LENGTH == 812.0)
 #define IS_IPHONE_XR (IS_IPHONE && SCREEN_MAX_LENGTH == 896.0 && IS_RETINA)
 #define IS_IPHONE_XS_MAX   (IS_IPHONE && SCREEN_MAX_LENGTH == 896.0 && IS_SUPER_RETINA)
-#define IS_IPHONE_X_SERIES (IS_IPHONE_X || IS_IPHONE_XR || IS_IPHONE_XS_MAX)
+
+#define IS_IPHONE_X_SERIES \
+({ \
+    BOOL iPhoneX = NO; \
+    if (@available(iOS 11.0, *)) { \
+        iPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0; \
+    } \
+    (iPhoneX); \
+}) \
 
 /**
  NavigationBar增加的高度

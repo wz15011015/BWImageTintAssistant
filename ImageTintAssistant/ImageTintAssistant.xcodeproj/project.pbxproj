@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		063C228F2591DBFF003FDA9E /* UIColor+BWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 063C228E2591DBFF003FDA9E /* UIColor+BWHelper.m */; };
+		063C22932591DE13003FDA9E /* UIImage+BWHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 063C22922591DE13003FDA9E /* UIImage+BWHelper.m */; };
 		066C8AAF2366E3C000D97D63 /* example_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 066C8AAE2366E3C000D97D63 /* example_icon.png */; };
 		06A1159A2137CAE300EB2F5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A115992137CAE300EB2F5E /* AppDelegate.m */; };
 		06A115A02137CAE300EB2F5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06A1159E2137CAE300EB2F5E /* Main.storyboard */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		063C228D2591DBFF003FDA9E /* UIColor+BWHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+BWHelper.h"; sourceTree = "<group>"; };
+		063C228E2591DBFF003FDA9E /* UIColor+BWHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BWHelper.m"; sourceTree = "<group>"; };
+		063C22912591DE13003FDA9E /* UIImage+BWHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+BWHelper.h"; sourceTree = "<group>"; };
+		063C22922591DE13003FDA9E /* UIImage+BWHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BWHelper.m"; sourceTree = "<group>"; };
 		066C8AAE2366E3C000D97D63 /* example_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = example_icon.png; sourceTree = "<group>"; };
 		06A115952137CAE300EB2F5E /* 图标着色助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "图标着色助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06A115982137CAE300EB2F5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,6 +114,10 @@
 				06A923D02363E5F300198B28 /* ITACommon.h */,
 				06DB5FF7238519C900467586 /* ITACommon.swift */,
 				06DB5FFB23851AAD00467586 /* ImageTintAssistant-Bridging-Header.h */,
+				063C228D2591DBFF003FDA9E /* UIColor+BWHelper.h */,
+				063C228E2591DBFF003FDA9E /* UIColor+BWHelper.m */,
+				063C22912591DE13003FDA9E /* UIImage+BWHelper.h */,
+				063C22922591DE13003FDA9E /* UIImage+BWHelper.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -233,9 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				063C228F2591DBFF003FDA9E /* UIColor+BWHelper.m in Sources */,
 				06A923E42363E6D700198B28 /* main.m in Sources */,
 				06DB5FF8238519C900467586 /* ITACommon.swift in Sources */,
 				06A923D82363E67500198B28 /* ViewController.m in Sources */,
+				063C22932591DE13003FDA9E /* UIImage+BWHelper.m in Sources */,
 				06DB5FFA238519E500467586 /* ITARGBInputView.swift in Sources */,
 				06A1159A2137CAE300EB2F5E /* AppDelegate.m in Sources */,
 			);
@@ -386,7 +398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BTStudio.ImageTintAssistant;
 				PRODUCT_NAME = "图标着色助手";
 				SWIFT_OBJC_BRIDGING_HEADER = "ImageTintAssistant/Common/ImageTintAssistant-Bridging-Header.h";
@@ -410,7 +422,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.BTStudio.ImageTintAssistant;
 				PRODUCT_NAME = "图标着色助手";
 				SWIFT_OBJC_BRIDGING_HEADER = "ImageTintAssistant/Common/ImageTintAssistant-Bridging-Header.h";
