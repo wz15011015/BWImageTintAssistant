@@ -106,4 +106,76 @@ extension NSImage {
             self.init(size: size)
         }
     }
+    
+    
+    /// 图片的主色调
+    var mainColor: NSColor {
+        // 获取图片信息
+        let imageWidth = Int(self.size.width / 2.0)
+        let imageHeight = Int(self.size.height / 2.0)
+        
+        // 位图的大小 = 图片宽 * 图片高 * 图片中每个点包含的信息量(4个信息量: R G B A)
+        let bitmapByteCount = imageWidth * imageHeight * 4
+        
+        // 根据位图大小,申请内存空间
+        let bitmapData = malloc(bitmapByteCount)
+        defer {
+            free(bitmapData)
+        }
+        
+        // 使用系统的颜色空间
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        
+        // 创建一个位图
+        let context = CGContext(data: bitmapData, width: imageWidth, height: imageHeight, bitsPerComponent: 8, bytesPerRow: imageWidth * 4, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)
+        
+        // 图片的rect
+        let rect = NSRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
+        guard let cgImageRef = self.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+            return NSColor.clear
+        }
+        
+        // 将图片画到位图中
+        context?.draw(cgImageRef, in: rect)
+        
+        // 获取位图数据
+        let bitData = context?.data
+        let data = unsafeBitCast(bitData, to: UnsafePointer<CUnsignedChar>.self)
+        
+        // 颜色集合
+        let colorSet = NSCountedSet.init(capacity: imageWidth * imageHeight)
+        for x in 0..<imageWidth {
+            for y in 0..<imageHeight {
+                let offset = (y * imageWidth + x) * 4
+                
+                let red   = (data + offset).pointee
+                let green = (data + offset + 1).pointee
+                let blue  = (data + offset + 2).pointee
+                let alpha = (data + offset + 3).pointee
+                
+                if alpha > 0 { // 去除透明色
+                    if !(red == 255 && green == 255 && blue == 255) { // 去除白色
+                        colorSet.add([CGFloat(red), CGFloat(green), CGFloat(blue), CGFloat(alpha)])
+                    }
+                }
+            }
+        }
+        
+        // 找到次数出现最多的颜色
+        let enumerator = colorSet.objectEnumerator()
+        var maxCount = 0
+        var maxColor: Array<CGFloat>? = nil
+        while let tmpColor = enumerator.nextObject() {
+            let tmpCount = colorSet.count(for: tmpColor)
+            if tmpCount >= maxCount {
+                maxCount = tmpCount
+                maxColor = tmpColor as? Array<CGFloat>
+            }
+        }
+        
+        guard let color = maxColor else {
+            return NSColor.clear
+        }
+        return NSColor.init(red: (color[0] / 255.0), green: (color[1] / 255.0), blue: (color[2] / 255.0), alpha: (color[3] / 255.0))
+    }
 }

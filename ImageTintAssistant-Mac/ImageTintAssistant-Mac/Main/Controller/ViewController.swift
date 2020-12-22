@@ -11,6 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
     
     @IBOutlet var originalImageButton: NSButton! // 原始图片
+    @IBOutlet var mainColorLabel: NSTextField! // 图片的主色调
     @IBOutlet var rgbView: ITARGBInputView!; // 颜色值输入视图
     @IBOutlet var tintButton: NSButton! // 着色按钮
     @IBOutlet var cornerRadiusTextField: NSTextField! // 圆角半径输入框
@@ -169,6 +170,11 @@ extension ViewController {
                 }
                 self.originalImage = image
                 self.originalImageButton.image = image
+                
+                // 获取图片主色调
+                let (r, g, b, a) = RGBAComponentsFromColor(image.mainColor)
+                self.mainColorLabel.stringValue = NSLocalizedString("Main color of the icon: ", comment: "") + "(\(r), \(g), \(b), \(a))"
+                
             } else if response == .cancel { // 取消
                 
             }

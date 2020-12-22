@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17140" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17140"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -726,6 +726,14 @@
                                     <action selector="addImageEvent:" target="XfG-lQ-9wD" id="zyV-x8-oHk"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sK2-Qh-DTG">
+                                <rect key="frame" x="159" y="350" width="83" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="                      " id="7nr-JZ-RkS">
+                                    <font key="font" metaFont="system" size="12"/>
+                                    <color key="textColor" red="0.38039215686274508" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="jym-xN-iZU" customClass="ITARGBInputView" customModule="ImageTintAssistant_Mac" customModuleProvider="target">
                                 <rect key="frame" x="22" y="290" width="356" height="60"/>
                                 <constraints>
@@ -780,18 +788,22 @@
                             <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="20" id="1vM-wC-vLY"/>
                             <constraint firstItem="Ok6-QY-AXW" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="3dK-uq-RVe"/>
                             <constraint firstItem="UIB-46-rQL" firstAttribute="top" secondItem="sSi-c1-Xyv" secondAttribute="bottom" constant="20" id="7nK-k8-fB9"/>
+                            <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="sK2-Qh-DTG" secondAttribute="bottom" id="Jgd-a2-59f"/>
+                            <constraint firstItem="sK2-Qh-DTG" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Jk9-Jj-7OM"/>
                             <constraint firstItem="sSi-c1-Xyv" firstAttribute="top" secondItem="Ok6-QY-AXW" secondAttribute="bottom" constant="20" id="Ne6-ps-cTz"/>
                             <constraint firstItem="sSi-c1-Xyv" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Nn1-Rw-NXs"/>
                             <constraint firstItem="UIB-46-rQL" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Oqb-T7-uUi"/>
                             <constraint firstItem="Ok6-QY-AXW" firstAttribute="top" secondItem="jym-xN-iZU" secondAttribute="bottom" constant="10" id="R7B-x1-Atu"/>
                             <constraint firstItem="jym-xN-iZU" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="dY9-gU-tSF"/>
                             <constraint firstItem="UsK-MA-rPP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="dwC-O3-WZq"/>
+                            <constraint firstItem="sK2-Qh-DTG" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="4" id="p5q-DT-jOY"/>
                             <constraint firstItem="UsK-MA-rPP" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="rqU-LK-g4g"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cornerRadiusTextField" destination="sSi-c1-Xyv" id="Fu9-Is-Uo3"/>
                         <outlet property="editedImageButton" destination="UIB-46-rQL" id="kYo-GD-XPj"/>
+                        <outlet property="mainColorLabel" destination="sK2-Qh-DTG" id="t2I-9K-ald"/>
                         <outlet property="originalImageButton" destination="UsK-MA-rPP" id="h8r-UC-wff"/>
                         <outlet property="rgbView" destination="jym-xN-iZU" id="SQ9-09-FTe"/>
                         <outlet property="tintButton" destination="Ok6-QY-AXW" id="raY-8v-EWe"/>
