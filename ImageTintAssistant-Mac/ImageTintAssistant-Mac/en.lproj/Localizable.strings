@@ -11,8 +11,6 @@
 
 "Enter the corner radius and press enter" = "Enter the corner radius and press enter";
 
-"Main color of the icon: " = "Main color of the icon: ";
-
 "Please enter the hex color value" = "Please enter the hex color value";
 "Please enter the number, the range 0 to 255" = "Please enter the number, the range 0 to 255";
 "Please select the icon to be tint" = "Please select the icon to be tint";
@@ -22,5 +20,6 @@
 "Save the tinted icon" = "Save the tinted icon";
 "Select" = "Select";
 
+"tap to get main color" = "tap to get main color";
 "The corner radius is too large" = "The corner radius is too large";
 "The input value range needs to be: 0 to 255" = "The input value range needs to be: 0 to 255";

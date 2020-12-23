@@ -53,17 +53,20 @@ let Is_iPhone_4   = (Is_iPhone && ScreenMaxLength < 568.0)
 let Is_iPhone_5   = (Is_iPhone && ScreenMaxLength == 568.0)
 let Is_iPhone_6   = (Is_iPhone && ScreenMaxLength == 667.0)
 let Is_iPhone_6p  = (Is_iPhone && ScreenMaxLength == 736.0)
-let Is_iPhone_X   = (Is_iPhone && ScreenMaxLength == 812.0)
-let Is_iPhone_XR  = (Is_iPhone && IsRetina && ScreenMaxLength == 896.0)
-let Is_iPhone_XS_MAX   = (Is_iPhone && IsSuperRetina && ScreenMaxLength == 896.0)
-let Is_iPhone_X_Series = (Is_iPhone_X || Is_iPhone_XR || Is_iPhone_XS_MAX)
+
+func Is_iPhone_X_Series() -> Bool {
+    if #available(iOS 11.0, *) {
+        return (UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0) > 0.0
+    }
+    return false
+}
 
 /// iPhoneX系列,NavigationBar增加的高度
 ///
 /// iPhoneX系列中,NavigationBar高度增加了24
 /// - Returns: 增加的高度
 func NavBarHeightAdded() -> Double {
-    if Is_iPhone_X_Series {
+    if Is_iPhone_X_Series() {
         return 24.0
     }
     return 0.0
@@ -74,7 +77,7 @@ func NavBarHeightAdded() -> Double {
 /// iPhoneX系列中,TabBar高度增加了34
 /// - Returns: 增加的高度
 func TabBarHeightAdded() -> Double {
-    if Is_iPhone_X_Series {
+    if Is_iPhone_X_Series() {
         return 34.0
     }
     return 0.0

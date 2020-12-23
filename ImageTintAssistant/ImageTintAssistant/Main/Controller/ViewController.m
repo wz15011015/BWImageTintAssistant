@@ -60,6 +60,7 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
 - (void)initUI {
     CGFloat imageViewW = 120;
     CGFloat imageViewX = (SCREEN_WIDTH - imageViewW) / 2.0;
+    
     // 1. 原始图片
     self.originalImageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageViewX, NAVIGATION_BAR_HEIGHT, imageViewW, imageViewW)];
     self.originalImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -160,7 +161,6 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
     self.originalImageView.frame = originalImageViewFrame;
     
     CGRect mainColorFrame = self.mainColorLabel.frame;
-    mainColorFrame.origin.x = 0;
     mainColorFrame.origin.y = CGRectGetMaxY(originalImageViewFrame);
     mainColorFrame.size.width = screen_width;
     mainColorFrame.size.height = space;
@@ -201,6 +201,7 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         UIColor *mainColor = [self.originalImage mainColor];
         
+        // 回到主线程更新UI
         dispatch_async(dispatch_get_main_queue(), ^{
             NSDictionary *rgbDic = [mainColor getRGBDictionary];
             int red   = [rgbDic[@"R"] intValue];

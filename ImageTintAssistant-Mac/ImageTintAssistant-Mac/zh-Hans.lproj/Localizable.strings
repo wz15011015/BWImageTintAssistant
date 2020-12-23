@@ -11,8 +11,6 @@
 
 "Enter the corner radius and press enter" = "输入圆角半径，按下回车键";
 
-"Main color of the icon: " = "图标主色调: ";
-
 "Please enter the hex color value" = "请输入十六进制颜色值";
 "Please enter the number, the range 0 to 255" = "请输入数字，范围0~255";
 "Please select the icon to be tint" = "请选择要着色的图标";
@@ -22,5 +20,6 @@
 "Save the tinted icon" = "保存着色后的图标";
 "Select" = "选择";
 
+"tap to get main color" = "点击以获取图标主色调";
 "The corner radius is too large" = "圆角半径太大";
 "The input value range needs to be: 0 to 255" = "输入值范围需为: 0~255";

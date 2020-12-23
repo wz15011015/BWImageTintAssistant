@@ -27,7 +27,12 @@
     UInt8 red = (UInt8)(r * 255);
     UInt8 green = (UInt8)(g * 255);
     UInt8 blue = (UInt8)(b * 255);
-    return @{ @"R" : @(red), @"G" : @(green), @"B" : @(blue), @"A" : @(a) };
+    return @{
+        @"R" : @(red),
+        @"G" : @(green),
+        @"B" : @(blue),
+        @"A" : @(a)
+    };
 }
 
 @end

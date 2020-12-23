@@ -12,14 +12,12 @@
 
 /// 获取图片的主色调
 - (UIColor *)mainColor {
-    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
-    
     CGSize thumbSize = CGSizeMake(self.size.width, self.size.height);
-    
-    // 先把图片缩小以加快计算速度,但越小结果的误差可能越大
-//    CGSize thumbSize = CGSizeMake(self.size.width / 2, self.size.height / 2);
+    // 把图片缩小以加快计算速度,但越小结果的误差可能越大
+//    thumbSize = CGSizeMake(self.size.width / 2, self.size.height / 2);
     
     // 创建一个位图
+    int bitmapInfo = kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedLast;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, thumbSize.width, thumbSize.height, 8, thumbSize.width * 4, colorSpace, bitmapInfo);
     
@@ -38,9 +36,8 @@
     for (int x = 0; x < thumbSize.width; x++) {
         for (int y = 0; y < thumbSize.height; y++) {
             int offset = 4 * (x + y * thumbSize.width);
-            
             // 减少计算量
-//            int offset = 4 * x * y;
+//            offset = 4 * x * y;
             
             int red   = data[offset];
             int green = data[offset + 1];

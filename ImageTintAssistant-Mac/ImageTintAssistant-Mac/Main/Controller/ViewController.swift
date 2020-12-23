@@ -8,10 +8,15 @@
 
 import Cocoa
 
+private let mainColorDefaultTitle = NSLocalizedString("tap to get main color", comment: "")
+
 class ViewController: NSViewController {
     
     @IBOutlet var originalImageButton: NSButton! // 原始图片
-    @IBOutlet var mainColorLabel: NSTextField! // 图片的主色调
+    
+    @IBOutlet var mainColorButton: NSButton! // 获取图片主色调按钮
+    @IBOutlet var loadingIndicator: NSProgressIndicator! // 加载指示器
+    
     @IBOutlet var rgbView: ITARGBInputView!; // 颜色值输入视图
     @IBOutlet var tintButton: NSButton! // 着色按钮
     @IBOutlet var cornerRadiusTextField: NSTextField! // 圆角半径输入框
@@ -132,6 +137,9 @@ private extension ViewController {
         // 设置按钮的鼠标悬停提示文字
         originalImageButton.toolTip = NSLocalizedString("Click to add icon", comment: "")
         
+        // 设置主色调按钮标题
+        mainColorButton.title = mainColorDefaultTitle
+        
         // 着色按钮背景色初始化为黑色
         tintButton.wantsLayer = true
         tintButton.layer?.backgroundColor = NSColor.black.cgColor
@@ -171,12 +179,35 @@ extension ViewController {
                 self.originalImage = image
                 self.originalImageButton.image = image
                 
-                // 获取图片主色调
-                let (r, g, b, a) = RGBAComponentsFromColor(image.mainColor)
-                self.mainColorLabel.stringValue = NSLocalizedString("Main color of the icon: ", comment: "") + "(\(r), \(g), \(b), \(a))"
+                self.mainColorButton.title = mainColorDefaultTitle
+                self.mainColorButton.isEnabled = true
                 
             } else if response == .cancel { // 取消
                 
+            }
+        }
+    }
+    
+    /// 获取图标主色调事件
+    @IBAction func getImageMainColorEvent(_ sender: NSButton) {
+        guard let originalImage = originalImage else { return }
+        
+        loadingIndicator.startAnimation(nil)
+        mainColorButton.title = ""
+        
+        // 切换到新线程中执行
+        DispatchQueue.global(qos: .default).async {
+            // 获取图片主色调
+            let mainColor = originalImage.mainColor
+            
+            // 回到主线程更新UI
+            DispatchQueue.main.async {
+                let (r, g, b, a) = RGBAComponentsFromColor(mainColor)
+                
+                self.mainColorButton.title = "(\(r), \(g), \(b), \(a))"
+                self.mainColorButton.isEnabled = false
+                
+                self.loadingIndicator.stopAnimation(nil)
             }
         }
     }
