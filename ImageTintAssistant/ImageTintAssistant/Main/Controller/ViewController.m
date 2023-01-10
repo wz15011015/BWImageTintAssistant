@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <CoreImage/CoreImage.h>
 #import "ImageTintAssistant-Swift.h"
 #import "ITACommon.h"
 #import "UIImage+BWHelper.h"
@@ -14,12 +15,13 @@
 
 static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色调";
 
-@interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate>
+@interface ViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverPresentationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *originalImageView; // 原始图片
 @property (nonatomic, strong) UILabel *mainColorLabel; // 图片主色调
 @property (nonatomic, strong) ITARGBInputView *rgbView; // 颜色值输入视图
 @property (nonatomic, strong) UIButton *tintButton; // 着色按钮
+@property (nonatomic, strong) UITextField *qrCodeTextField; // 二维码文本输入框
 @property (nonatomic, strong) UIImageView *tintedImageView; // 着色后图片
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) UIActivityIndicatorView *loadingView;
@@ -27,6 +29,7 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
 @property (nonatomic, strong) UIImage *originalImage; // 原图片
 @property (nonatomic, strong) UIColor *tintColor; // 着色颜色
 @property (nonatomic, strong) UIImage *tintImage; // 着色图片
+@property (nonatomic, strong) UIImage *qrCodeImage; // 二维码图片
 @property (nonatomic, copy) NSString *tintImageFilePath; // 着色图片沙盒路径
 @property (nonatomic, assign) NSInteger red;
 @property (nonatomic, assign) NSInteger green;
@@ -98,8 +101,20 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
     self.tintButton.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.tintButton];
     
-    // 4. 着色后图片
-    self.tintedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageViewX, CGRectGetMaxY(self.tintButton.frame) + 20, imageViewW, imageViewW)];
+    // 4. 二维码文本输入框
+    self.qrCodeTextField = [[UITextField alloc] initWithFrame:CGRectMake(30, CGRectGetMaxY(self.tintButton.frame) + 10, SCREEN_WIDTH - 2 * 30, 40)];
+    self.qrCodeTextField.delegate = self;
+    self.qrCodeTextField.borderStyle = UITextBorderStyleRoundedRect;
+    self.qrCodeTextField.textAlignment = NSTextAlignmentCenter;
+    self.qrCodeTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.qrCodeTextField.returnKeyType = UIReturnKeyDone;
+    self.qrCodeTextField.enablesReturnKeyAutomatically = YES;
+    self.qrCodeTextField.font = [UIFont systemFontOfSize:16];
+    self.qrCodeTextField.placeholder = NSLocalizedString(@"输入文本，点击“完成”生成二维码", nil);
+    [self.view addSubview:self.qrCodeTextField];
+    
+    // 5. 着色后图片
+    self.tintedImageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageViewX, CGRectGetMaxY(self.qrCodeTextField.frame) + 20, imageViewW, imageViewW)];
     self.tintedImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.tintedImageView.userInteractionEnabled = YES;
     [self.view addSubview:self.tintedImageView];
@@ -107,7 +122,7 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
     UITapGestureRecognizer *tintTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tintImageTap:)];
     [self.tintedImageView addGestureRecognizer:tintTapGR];
     
-    // 5. 转圈指示器
+    // 6. 转圈指示器
     if (@available(iOS 13.0, *)) {
         self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     } else {
@@ -246,6 +261,31 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
     NSLog(@"着色图片的沙盒路径: %@", self.tintImageFilePath);
 }
 
+/// 根据文本内容生成二维码
+- (void)generateQRCodeWithText:(NSString *)text {
+    // 二维码图片的生成及显示
+    // 图片宽度设置为UIImageView控件的宽
+    CGFloat width = CGRectGetWidth(self.tintedImageView.frame);
+    self.qrCodeImage = [self generateQRCodeImageWithText:text imageWidth:width];
+    self.tintedImageView.image = self.qrCodeImage;
+    
+    // 二维码图片写入到沙盒
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+    NSString *tintImageName = [NSString stringWithFormat:@"/QRCode_image_%@.png", dateStr];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fullPathToFile = [documentsDirectory stringByAppendingString:tintImageName];
+    
+    NSData *tintImageData = UIImagePNGRepresentation(self.qrCodeImage);
+    [tintImageData writeToFile:fullPathToFile atomically:NO];
+    
+    // 图片的沙盒路径
+    self.tintImageFilePath = [documentsDirectory stringByAppendingPathComponent:tintImageName];
+    NSLog(@"二维码图片的沙盒路径: %@", self.tintImageFilePath);
+}
+
 // 导出着色图片事件
 - (void)tintImageTap:(UITapGestureRecognizer *)gestureRecognizer {
     if (IS_NULL_STRING(self.tintImageFilePath)) { // 文件路径为空
@@ -296,10 +336,27 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
 }
 
 
-#pragma mark - Override
+#pragma mark - UITextFieldDelegate
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.view endEditing:YES];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.qrCodeTextField) {
+        [textField resignFirstResponder];
+        
+        [self generateQRCodeWithText:textField.text];
+    }
+    return YES;
+}
+
+
+#pragma mark - Getters
+
+- (UIImagePickerController *)imagePickerController {
+    if (!_imagePickerController) {
+        _imagePickerController = [[UIImagePickerController alloc] init];
+        _imagePickerController.delegate = self;
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    return _imagePickerController;
 }
 
 
@@ -365,23 +422,70 @@ static NSString *const MainColorLabelPlaceholder = @"点击以获取图标主色
     return newImage;
 }
 
-
-#pragma mark - Getters
-
-- (UIImagePickerController *)imagePickerController {
-    if (!_imagePickerController) {
-        _imagePickerController = [[UIImagePickerController alloc] init];
-        _imagePickerController.delegate = self;
-        _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+/// 根据文本内容生成二维码图片
+/// - Parameter text: 文本内容
+/// - Parameter imageWidth: 二维码图片宽度(宽高相等)
+- (UIImage *)generateQRCodeImageWithText:(NSString *)text imageWidth:(CGFloat)imageWidth {
+    if (!text) {
+        return nil;
     }
-    return _imagePickerController;
+    NSData *inputData = [text dataUsingEncoding:NSUTF8StringEncoding];
+    if (!inputData) {
+        return nil;
+    }
+    
+    // 创建过滤器
+    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    // 恢复默认设置
+    [filter setDefaults];
+    // 设置输入信息
+    [filter setValue:inputData forKeyPath:@"inputMessage"];
+    // 输出图片
+    CIImage *outputCIImage = [filter outputImage];
+    
+//    UIImage *image = [UIImage imageWithCIImage:outputCIImage];
+    // 由于CIImage直接转成的UIImage显示出来的清晰度较低,因此需要对图片进行处理
+    UIImage *image = [self createNonInterpolatedUIImageFromCIImage:outputCIImage imageWidth:imageWidth];
+    return image;
 }
 
+/// 根据CIImage生成指定大小的UIImage
+/// - Parameters:
+///   - image: CIImage
+///   - imageWidth: 图片宽度(宽高相等)
+- (UIImage *)createNonInterpolatedUIImageFromCIImage:(CIImage *)ciImage imageWidth:(CGFloat)imageWidth {
+    CGRect extent = CGRectIntegral(ciImage.extent);
+    CGFloat scale = MIN(imageWidth / CGRectGetWidth(extent), imageWidth / CGRectGetHeight(extent));
+    
+    // 1. 创建bitmap
+    size_t width = CGRectGetWidth(extent) * scale;
+    size_t height = CGRectGetHeight(extent) * scale;
+    CGColorSpaceRef cs = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, cs, (CGBitmapInfo)kCGImageAlphaNone);
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef bitmapImage = [context createCGImage:ciImage fromRect:extent];
+    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
+    CGContextScaleCTM(bitmapRef, scale, scale);
+    CGContextDrawImage(bitmapRef, extent, bitmapImage);
+    
+    // 2. 保存bitmap到图片
+    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    CGContextRelease(bitmapRef);
+    CGImageRelease(bitmapImage);
+    
+    return [UIImage imageWithCGImage:scaledImage];
+}
+
+
+#pragma mark - Override
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end
