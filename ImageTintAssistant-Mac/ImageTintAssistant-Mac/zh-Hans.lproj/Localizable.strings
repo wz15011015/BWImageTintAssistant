@@ -7,16 +7,20 @@
 */
 
 "Click to add icon"  = "点击以添加图标";
-"Click to save icon" = "点击以保存图标";
+"Click to save tinted icon" = "点击以保存着色图标";
+"Click to save QR Code image" = "点击以保存二维码图片";
+"Click to save round corner icon" = "点击以保存圆角图标";
 
 "Enter the corner radius and press enter" = "输入圆角半径，按下回车键";
+"Enter the text and press enter to generate the QR code" = "输入文本，按下回车键生成二维码";
 
 "Please enter the hex color value" = "请输入十六进制颜色值";
 "Please enter the number, the range 0 to 255" = "请输入数字，范围0~255";
 "Please select the icon to be tint" = "请选择要着色的图标";
 
 "Save"   = "保存";
-"Save the round icon"  = "保存圆角图标";
+"Save the QR Code image" = "保存二维码图片";
+"Save the round corner icon"  = "保存圆角图标";
 "Save the tinted icon" = "保存着色后的图标";
 "Select" = "选择";
 

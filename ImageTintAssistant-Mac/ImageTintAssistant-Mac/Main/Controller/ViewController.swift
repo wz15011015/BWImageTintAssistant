@@ -7,6 +7,14 @@
 //
 
 import Cocoa
+import CoreImage
+
+/// 编辑图片的状态
+enum EditedImageState {
+    case tint      // 着色状态
+    case corner    // 圆角状态
+    case qrcode    // 二维码状态
+}
 
 private let mainColorDefaultTitle = NSLocalizedString("tap to get main color", comment: "")
 
@@ -20,11 +28,13 @@ class ViewController: NSViewController {
     @IBOutlet var rgbView: ITARGBInputView!; // 颜色值输入视图
     @IBOutlet var tintButton: NSButton! // 着色按钮
     @IBOutlet var cornerRadiusTextField: NSTextField! // 圆角半径输入框
+    @IBOutlet var qrCodeContentTextField: NSTextField! // 二维码内容输入框
     @IBOutlet var editedImageButton: NSButton! // 编辑后的图片
     
     private var originalImage: NSImage? // 原图片
     private var tintImage: NSImage? // 着色图片
     private var cornerRadiusImage: NSImage? // 圆角图片
+    private var qrCodeImage: NSImage? // 二维码图片
     
     // 着色颜色RGB值
     private var red: Int = 0
@@ -34,8 +44,8 @@ class ViewController: NSViewController {
     // 圆角半径
     private var cornerRadius: Float = 0.0
     
-    /// 是否为着色状态
-    private var isTintState = true
+    /// 当前编辑图片的状态
+    private var editedImageState = EditedImageState.tint
     
 
     override func viewDidLoad() {
@@ -64,6 +74,13 @@ class ViewController: NSViewController {
         rgbView.rgbColorConfirmHandler = { (color: NSColor, red: Int, green: Int, blue: Int) in
             self.tintImageEvent(self.tintButton)
         }
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        cornerRadiusTextField.resignFirstResponder()
+        qrCodeContentTextField.resignFirstResponder()
     }
 
     override var representedObject: Any? {
@@ -147,9 +164,14 @@ private extension ViewController {
         // 设置输入框代理
         cornerRadiusTextField.delegate = self
         cornerRadiusTextField.placeholderString = NSLocalizedString("Enter the corner radius and press enter", comment: "")
+        cornerRadiusTextField.toolTip = NSLocalizedString("Enter the corner radius and press enter", comment: "")
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         cornerRadiusTextField.formatter = formatter
+        
+        qrCodeContentTextField.delegate = self
+        qrCodeContentTextField.placeholderString = NSLocalizedString("Enter the text and press enter to generate the QR code", comment: "")
+        qrCodeContentTextField.toolTip = NSLocalizedString("Enter the text and press enter to generate the QR code", comment: "")
     }
 }
 
@@ -217,7 +239,7 @@ extension ViewController {
         guard let originalImage = originalImage else { return }
         
         // 设置为着色状态
-        isTintState = true
+        editedImageState = .tint
         
         // 着色颜色
         let tintColor = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
@@ -233,48 +255,18 @@ extension ViewController {
         /// 即可实现点击时不显示高亮效果.
         editedImageButton.alternateImage = tintImage
         // 设置按钮的鼠标悬停提示文字
-        editedImageButton.toolTip = NSLocalizedString("Click to save icon", comment: "")
+        editedImageButton.toolTip = NSLocalizedString("Click to save tinted icon", comment: "")
     }
     
     /// 导出着色图片事件
     @IBAction func saveImageEvent(_ sender: NSButton) {
-        if !isTintState {
-            self.saveCornerRadiusImageEvent()
-            return
-        }
-        
-        guard tintImage != nil else { return }
-        
-        // 文件保存面板
-        let panel = NSSavePanel()
-        panel.message = NSLocalizedString("Save the tinted icon", comment: "")
-        panel.prompt = NSLocalizedString("Save", comment: "")
-        panel.allowedFileTypes = ["png"]
-        panel.nameFieldStringValue = "tint_image_\(red)_\(green)_\(blue)" // 默认保存文件名
-        panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
-            if response != .OK {
-                return
-            }
-            guard let url = panel.url else {
-                return
-            }
-            
-            // https://blog.csdn.net/lovechris00/article/details/81103692#1_427
-            
-            if let image = self.tintImage,
-                let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
-                let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
-//                bitmapImageRep.size = image.size
-                // 强制指定像素宽高
-                // pixelsWide == size.width && pixelsHigh == size.height 时,dpi为72
-                // pixelsWide == 2 * size.width && pixelsHigh == 2 * size.height 时,dpi为144
-//                bitmapImageRep.pixelsWide = Int(image.size.width)
-//                bitmapImageRep.pixelsHigh = Int(image.size.height)
-                let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
-                
-                // 保存图片到本地
-                try? pngData?.write(to: url)
-            }
+        switch editedImageState {
+            case .corner:
+                saveCornerRadiusImageEvent()
+            case .qrcode:
+                saveQRCodeImageEvent()
+            default:
+                saveTintedImageEvent()
         }
     }
     
@@ -293,8 +285,8 @@ extension ViewController {
             return
         }
         
-        // 设置为非着色状态
-        isTintState = false
+        // 设置为圆角状态
+        editedImageState = .corner
         
         // 图片添加圆角
         cornerRadiusImage = NSImage(sourceImage: image, radius: CGFloat(radius))
@@ -307,7 +299,63 @@ extension ViewController {
         /// 即可实现点击时不显示高亮效果.
         editedImageButton.alternateImage = cornerRadiusImage
         // 设置按钮的鼠标悬停提示文字
-        editedImageButton.toolTip = NSLocalizedString("Click to save icon", comment: "")
+        editedImageButton.toolTip = NSLocalizedString("Click to save round corner icon", comment: "")
+    }
+    
+    /// 根据文本内容生成二维码
+    func generateQRCode(text: String) {
+        // 设置为二维码状态
+        editedImageState = .qrcode
+        
+        // 生成二维码图片
+        qrCodeImage = generateQRCodeImage(text: text)
+        
+        // 显示二维码图片
+        editedImageButton.image = qrCodeImage
+        
+        // 设置点击时的图片
+        /// 当按钮类型为Momentary Change时,设置image和alternateImage为同一个图片,
+        /// 即可实现点击时不显示高亮效果.
+        editedImageButton.alternateImage = qrCodeImage
+        // 设置按钮的鼠标悬停提示文字
+        editedImageButton.toolTip = NSLocalizedString("Click to save QR Code image", comment: "")
+    }
+    
+    /// 导出着色图片事件
+    func saveTintedImageEvent() {
+        guard tintImage != nil else { return }
+        
+        // 文件保存面板
+        let panel = NSSavePanel()
+        panel.message = NSLocalizedString("Save the tinted icon", comment: "")
+        panel.prompt = NSLocalizedString("Save", comment: "")
+        panel.allowedFileTypes = ["png"]
+        panel.nameFieldStringValue = "tinted_image_\(red)_\(green)_\(blue)" // 默认保存文件名
+        panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
+            if response != .OK {
+                return
+            }
+            guard let url = panel.url else {
+                return
+            }
+            
+            // https://blog.csdn.net/lovechris00/article/details/81103692#1_427
+            
+            if let image = self.tintImage,
+               let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
+                //                bitmapImageRep.size = image.size
+                // 强制指定像素宽高
+                // pixelsWide == size.width && pixelsHigh == size.height 时,dpi为72
+                // pixelsWide == 2 * size.width && pixelsHigh == 2 * size.height 时,dpi为144
+                //                bitmapImageRep.pixelsWide = Int(image.size.width)
+                //                bitmapImageRep.pixelsHigh = Int(image.size.height)
+                let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
+                
+                // 保存图片到本地
+                try? pngData?.write(to: url)
+            }
+        }
     }
     
     /// 导出圆角图片事件
@@ -316,10 +364,10 @@ extension ViewController {
         
         // 文件保存面板
         let panel = NSSavePanel()
-        panel.message = NSLocalizedString("Save the round icon", comment: "")
+        panel.message = NSLocalizedString("Save the round corner icon", comment: "")
         panel.prompt = NSLocalizedString("Save", comment: "")
         panel.allowedFileTypes = ["png"]
-        panel.nameFieldStringValue = "round_image_\(cornerRadius)" // 默认保存文件名
+        panel.nameFieldStringValue = "round_corner_image_\(cornerRadius)" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
                 return
@@ -337,6 +385,41 @@ extension ViewController {
             }
         }
     }
+    
+    /// 导出二维码图片事件
+    func saveQRCodeImageEvent() {
+        guard qrCodeImage != nil else { return }
+        
+        var dateStr = "xxx"
+        if #available(macOS 10.15, *) {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyyMMddHHmmss"
+            dateStr = formatter.string(from: NSDate.now)
+        }
+        
+        // 文件保存面板
+        let panel = NSSavePanel()
+        panel.message = NSLocalizedString("Save the QR Code image", comment: "")
+        panel.prompt = NSLocalizedString("Save", comment: "")
+        panel.allowedFileTypes = ["png"]
+        panel.nameFieldStringValue = "QR_Code_image_\(dateStr)" // 默认保存文件名
+        panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
+            if response != .OK {
+                return
+            }
+            guard let url = panel.url else {
+                return
+            }
+            
+            if let image = self.qrCodeImage,
+               let cgImageRef = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef)
+                let pngData = bitmapImageRep.representation(using: NSBitmapImageRep.FileType.png, properties: [:])
+                // 保存图片到本地
+                try? pngData?.write(to: url)
+            }
+        }
+    }
 }
 
 
@@ -346,11 +429,134 @@ extension ViewController: NSTextFieldDelegate {
     
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
         let newlineSel = #selector(NSStandardKeyBindingResponding.insertNewline(_:)) // 换行键
-        if commandSelector == newlineSel {
-            cornerRadius = cornerRadiusTextField.floatValue
-            cornerRadiusImage(radius: cornerRadius)
+        if control == cornerRadiusTextField {
+            if commandSelector == newlineSel {
+                cornerRadius = cornerRadiusTextField.floatValue
+                cornerRadiusImage(radius: cornerRadius)
+            }
+            
+        } else if control == qrCodeContentTextField {
+            if commandSelector == newlineSel {
+                let string = qrCodeContentTextField.stringValue
+                if !string.isEmpty {
+                    generateQRCode(text: string)
+                }
+            }
         }
         
         return false
     }
+}
+
+
+// MARK: - Tool Methods
+
+extension ViewController {
+    
+    /// 根据文本内容生成二维码图片
+    /// - Parameters:
+    ///   - text: 文本内容
+    func generateQRCodeImage(text: String) -> NSImage? {
+        if text.isEmpty { return nil }
+        guard let inputData = text.data(using: .utf8) else { return nil }
+        
+        // 创建过滤器
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        // 恢复默认设置
+        filter?.setDefaults()
+        // 设置输入信息
+        filter?.setValue(inputData, forKeyPath: "inputMessage")
+        // 输出图片
+        let ciImage = filter?.outputImage
+        
+//        let image = createNSImageFromCIImage(ciImage: ciImage)
+        let image = createNonInterpolatedNSImageFromCIImage(ciImage: ciImage, imageWidth: 120.0)
+        return image
+    }
+    
+    /// 根据CIImage生成指定大小的NSImage
+    /// - Parameters:
+    ///   - image: CIImage
+    ///   - imageWidth: 图片宽度(宽高相等)
+    /// - Returns: NSImage
+    func createNonInterpolatedNSImageFromCIImage(ciImage: CIImage?, imageWidth: Double) -> NSImage? {
+        guard let ciImage = ciImage else { return nil }
+        
+        let extent = CGRectIntegral(ciImage.extent)
+        let scale = min(imageWidth / extent.width, imageWidth / extent.height)
+        
+        let ciContext = CIContext()
+        let cgImage = ciContext.createCGImage(ciImage, from: extent)
+        guard let cgImage = cgImage else { return nil }
+        
+        // 1. 创建bitmap
+        let width = Int(extent.width * scale)
+        let height = Int(extent.height * scale)
+        // 使用系统的颜色空间
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        // 创建一个位图
+        let bitmapContext = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGImageAlphaInfo.none.rawValue)
+        bitmapContext?.interpolationQuality = .none
+        bitmapContext?.scaleBy(x: scale, y: scale)
+        bitmapContext?.draw(cgImage, in: extent)
+        
+        // 2. 保存bitmap到图片
+        let scaledCGImage = bitmapContext?.makeImage()
+        let image = createNSImageFromCGImage(cgImage: scaledCGImage)
+        
+        return image
+    }
+    
+    /// CGImage转NSImage
+    /// - Parameter cgImage: CGImage
+    /// - Returns: NSImage
+    func createNSImageFromCGImage(cgImage: CGImage?) -> NSImage? {
+        guard let cgImage = cgImage else { return nil }
+        
+        // 创建目标图像并绘制
+        let imageRect = CGRect(x: 0.0, y: 0.0, width: Double(cgImage.width), height: Double(cgImage.height))
+        let newImage = NSImage.init(size: imageRect.size)
+        // 绘制图像
+        newImage.lockFocus()
+        let cgContext = NSGraphicsContext.current?.cgContext
+        cgContext?.draw(cgImage, in: imageRect)
+        newImage.unlockFocus()
+        
+        return newImage
+    }
+    
+    /// CIImage转NSImage
+    /// - Parameter ciImage: CIImage
+    /// - Returns: NSImage
+    func createNSImageFromCIImage(ciImage: CIImage?) -> NSImage? {
+        guard let ciImage = ciImage else { return nil }
+        
+        // CIImage转CGImage
+        let ciContext = CIContext()
+        guard let cgImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return nil }
+        
+        // CGImage转NSImage
+        // 创建目标图像并绘制
+        let imageRect = CGRect(x: 0.0, y: 0.0, width: Double(cgImage.width), height: Double(cgImage.height))
+        let newImage = NSImage.init(size: imageRect.size)
+        // 绘制图像
+        newImage.lockFocus()
+        let cgContext = NSGraphicsContext.current?.cgContext
+        cgContext?.draw(cgImage, in: imageRect)
+        newImage.unlockFocus()
+        
+        return newImage
+    }
+    
+    /// NSImage转CGImage
+    /// - Parameter nsImage: NSImage
+    /// - Returns: CGImage
+    func createCGImageFromNSImage(nsImage: NSImage?) -> CGImage? {
+        guard let data = nsImage?.tiffRepresentation else { return nil }
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else { return nil }
+        let cgImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil)
+        
+        return cgImage
+    }
+    
 }
