@@ -2,8 +2,8 @@
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP"; */
 "1UK-8n-QPP.title" = "Customize Toolbar…";
 
-/* Class = "NSMenuItem"; title = "图标着色助手"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "图标着色助手";
+/* Class = "NSMenuItem"; title = "ImageTintAssistant"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "ImageTintAssistant";
 
 /* Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx"; */
 "1b7-l0-nxx.title" = "Find";
@@ -36,7 +36,7 @@
 "4J7-dP-txa.title" = "Enter Full Screen";
 
 /* Class = "NSMenuItem"; title = "Quit ImageTintAssistant-Mac"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "退出图标着色助手";
+"4sb-4s-VLi.title" = "Quit ImageTintAssistant";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "Edit";
@@ -44,8 +44,8 @@
 /* Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD"; */
 "5Vv-lz-BsD.title" = "Copy Style";
 
-/* Class = "NSMenuItem"; title = "关于图标着色助手"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "关于图标着色助手";
+/* Class = "NSMenuItem"; title = "About ImageTintAssistant"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "About ImageTintAssistant";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Redo";
@@ -66,7 +66,7 @@
 "AYu-sK-qS6.title" = "Main Menu";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "BOF-NM-1cW"; */
-"BOF-NM-1cW.title" = "设置…";
+"BOF-NM-1cW.title" = "Preferences…";
 
 /* Class = "NSMenuItem"; title = "\tLeft to Right"; ObjectID = "BgM-ve-c93"; */
 "BgM-ve-c93.title" = "\tLeft to Right";
@@ -84,7 +84,7 @@
 "F2S-fz-NVQ.title" = "Help";
 
 /* Class = "NSMenuItem"; title = "ImageTintAssistant-Mac Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "图标着色助手帮助";
+"FKE-Sm-Kum.title" = "ImageTintAssistant Help";
 
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
 "Fal-I4-PZk.title" = "Text";
@@ -125,8 +125,8 @@
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Open…";
 
-/* Class = "NSWindow"; title = "图标着色助手"; ObjectID = "IQv-IB-iLA"; */
-"IQv-IB-iLA.title" = "图标着色助手";
+/* Class = "NSWindow"; title = "ImageTintAssistant"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "ImageTintAssistant";
 
 /* Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23"; */
 "J5U-5w-g23.title" = "Justify";
@@ -138,10 +138,10 @@
 "KaW-ft-85H.title" = "Revert to Saved";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
-"Kd2-mp-pUS.title" = "全部显示";
+"Kd2-mp-pUS.title" = "Show All";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
-"LE2-aR-0XJ.title" = "前置全部窗口";
+"LE2-aR-0XJ.title" = "Bring All to Front";
 
 /* Class = "NSMenuItem"; title = "Paste Ruler"; ObjectID = "LVM-kO-fVI"; */
 "LVM-kO-fVI.title" = "Paste Ruler";
@@ -156,19 +156,19 @@
 "Mki-e5-Uq7.title" = "Tint";
 
 /* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
-"NMo-om-nkz.title" = "服务";
+"NMo-om-nkz.title" = "Services";
 
 /* Class = "NSMenuItem"; title = "\tDefault"; ObjectID = "Nop-cj-93Q"; */
 "Nop-cj-93Q.title" = "\tDefault";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
-"OY7-WF-poV.title" = "最小化";
+"OY7-WF-poV.title" = "Minimize";
 
 /* Class = "NSMenuItem"; title = "Baseline"; ObjectID = "OaQ-X3-Vso"; */
 "OaQ-X3-Vso.title" = "Baseline";
 
 /* Class = "NSMenuItem"; title = "Hide ImageTintAssistant-Mac"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "隐藏图标着色助手";
+"Olw-nP-bQN.title" = "Hide ImageTintAssistant";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "Find Previous";
@@ -183,7 +183,7 @@
 "Q5e-8K-NDq.title" = "Show Fonts";
 
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
-"R4o-n2-Eq4.title" = "缩放";
+"R4o-n2-Eq4.title" = "Zoom";
 
 /* Class = "NSMenuItem"; title = "\tRight to Left"; ObjectID = "RB4-Sm-HuC"; */
 "RB4-Sm-HuC.title" = "\tRight to Left";
@@ -207,7 +207,7 @@
 "VIY-Ag-zcb.title" = "Center";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "隐藏其他";
+"Vdr-fp-XzO.title" = "Hide Others";
 
 /* Class = "NSMenuItem"; title = "Italic"; ObjectID = "Vjx-xi-njq"; */
 "Vjx-xi-njq.title" = "Italic";
@@ -287,6 +287,9 @@
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
 "dRJ-4n-Yzg.title" = "Undo";
 
+/* Class = "NSButtonCell"; title = "Tap to get main color"; ObjectID = "fZS-R7-ExJ"; */
+"fZS-R7-ExJ.title" = "Tap to get main color";
+
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
 "gVA-U4-sdL.title" = "Paste";
 
@@ -297,7 +300,7 @@
 "hz2-CU-CR7.title" = "Check Document Now";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
-"hz9-B4-Xy5.title" = "服务";
+"hz9-B4-Xy5.title" = "Services";
 
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "i1d-Er-qST"; */
 "i1d-Er-qST.title" = "Smaller";
@@ -359,8 +362,8 @@
 /* Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM"; */
 "tlD-Oa-oAM.title" = "Kern";
 
-/* Class = "NSMenu"; title = "图标着色助手"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "图标着色助手";
+/* Class = "NSMenu"; title = "ImageTintAssistant"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "ImageTintAssistant";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "Cut";

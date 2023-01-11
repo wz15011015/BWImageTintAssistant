@@ -470,7 +470,7 @@ extension ViewController {
         let ciImage = filter?.outputImage
         
 //        let image = createNSImageFromCIImage(ciImage: ciImage)
-        let image = createNonInterpolatedNSImageFromCIImage(ciImage: ciImage, imageWidth: 120.0)
+        let image = createNonInterpolatedNSImageFromCIImage(ciImage: ciImage, imageWidth: 1024.0)
         return image
     }
     
@@ -513,8 +513,21 @@ extension ViewController {
     func createNSImageFromCGImage(cgImage: CGImage?) -> NSImage? {
         guard let cgImage = cgImage else { return nil }
         
+        // 由于lockFocus()使用屏幕属性,普通屏幕为72dpi,视网膜屏幕为144dpi
+        // 为了保证绘制出来的图像大小为实际像素大小,需要根据屏幕倍数进行处理:
+        // 一倍屏幕: 绘制图像的宽高为指定目标图像宽高的一倍
+        // 二倍屏幕: 绘制图像的宽高为指定目标图像宽高的两倍
+        // 因此需要除以屏幕倍数,才能保证绘制图像的宽高为指定目标图像的宽高
+        
+        // CGImage实际像素大小
+        let pixelSize = NSSize(width: cgImage.width, height: cgImage.height)
+        // 屏幕倍数(几倍屏)
+        var screenScale = NSScreen.main?.backingScaleFactor ?? 1.0
+        // 目标图像尺寸
+        let targetSize = NSSize(width: pixelSize.width / screenScale, height: pixelSize.height / screenScale)
+        
         // 创建目标图像并绘制
-        let imageRect = CGRect(x: 0.0, y: 0.0, width: Double(cgImage.width), height: Double(cgImage.height))
+        let imageRect = CGRect(x: 0.0, y: 0.0, width: targetSize.width, height: targetSize.height)
         let newImage = NSImage.init(size: imageRect.size)
         // 绘制图像
         newImage.lockFocus()

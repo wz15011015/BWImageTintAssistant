@@ -40,6 +40,7 @@
 		0686A2CA23B0A7AA00521016 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0686A2CC23B0A7AB00521016 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		06DE4E6B2385365000F514B2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		334E1528296E4D2000F1760E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +257,7 @@
 			children = (
 				06865C7923850B6800AD9C5A /* Base */,
 				060317B623A1DD510033D7CD /* zh-Hans */,
+				334E1528296E4D2000F1760E /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

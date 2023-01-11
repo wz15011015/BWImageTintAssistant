@@ -691,7 +691,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="181" y="240" width="440" height="520"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="400" height="520"/>
+                        <value key="minSize" type="size" width="400" height="525"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -776,10 +776,10 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sSi-c1-Xyv">
-                                <rect key="frame" x="105" y="200" width="190" height="30"/>
+                                <rect key="frame" x="85" y="200" width="230" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="DMe-NZ-7Pt"/>
-                                    <constraint firstAttribute="width" constant="190" id="fvC-vB-Vl0"/>
+                                    <constraint firstAttribute="width" constant="230" id="fvC-vB-Vl0"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="vi4-Xf-6Bm">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="BFo-Y9-x9u"/>
@@ -789,10 +789,10 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v4D-jx-hUc">
-                                <rect key="frame" x="105" y="165" width="190" height="30"/>
+                                <rect key="frame" x="85" y="165" width="230" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="N4I-eE-2Iu"/>
-                                    <constraint firstAttribute="width" constant="190" id="nav-6e-F7F"/>
+                                    <constraint firstAttribute="width" constant="230" id="nav-6e-F7F"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="hg9-x5-DLx">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="5pT-c3-4Rs"/>

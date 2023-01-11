@@ -67,7 +67,7 @@ class ITARGBInputView: NSView {
         textField.delegate = self
         textField.font = textFieldFont
         textField.textColor = NSColor.labelColor
-        textField.placeholderAttributedString = NSAttributedString(string: "#DF7E1F", attributes: [NSAttributedString.Key.foregroundColor : RGBColor(186, 186, 186), NSAttributedString.Key.font : textFieldFont])
+        textField.placeholderAttributedString = NSAttributedString(string: "#DF7E1F", attributes: [NSAttributedString.Key.foregroundColor : RGBAColor(186, 186, 186, 0.5), NSAttributedString.Key.font : textFieldFont])
         return textField
     }()
     
