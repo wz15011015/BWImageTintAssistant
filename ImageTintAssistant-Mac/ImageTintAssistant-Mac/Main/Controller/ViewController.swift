@@ -428,23 +428,29 @@ extension ViewController {
 extension ViewController: NSTextFieldDelegate {
     
     func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-        let newlineSel = #selector(NSStandardKeyBindingResponding.insertNewline(_:)) // 换行键
-        if control == cornerRadiusTextField {
-            if commandSelector == newlineSel {
+        if commandSelector == #selector(NSStandardKeyBindingResponding.insertNewline(_:)) { // ENTER键
+            if control == cornerRadiusTextField {
                 cornerRadius = cornerRadiusTextField.floatValue
                 cornerRadiusImage(radius: cornerRadius)
-            }
-            
-        } else if control == qrCodeContentTextField {
-            if commandSelector == newlineSel {
+                
+            } else if control == qrCodeContentTextField {
                 let string = qrCodeContentTextField.stringValue
                 if !string.isEmpty {
                     generateQRCode(text: string)
                 }
             }
+            
+            return true // 自己处理了对应的按键操作时，返回true
+            
+        } else if commandSelector == #selector(NSStandardKeyBindingResponding.insertTab(_:)) { // TAB键
+            
+        } else if commandSelector == #selector(NSStandardKeyBindingResponding.cancelOperation(_:)) { // ESC键
+            
+        } else if commandSelector == #selector(NSStandardKeyBindingResponding.deleteBackward(_:)) { // DELETE键
+            
         }
         
-        return false
+        return false // 默认返回false，表示其它按键操作不会自己处理，交给系统处理
     }
 }
 
@@ -522,7 +528,7 @@ extension ViewController {
         // CGImage实际像素大小
         let pixelSize = NSSize(width: cgImage.width, height: cgImage.height)
         // 屏幕倍数(几倍屏)
-        var screenScale = NSScreen.main?.backingScaleFactor ?? 1.0
+        let screenScale = NSScreen.main?.backingScaleFactor ?? 1.0
         // 目标图像尺寸
         let targetSize = NSSize(width: pixelSize.width / screenScale, height: pixelSize.height / screenScale)
         

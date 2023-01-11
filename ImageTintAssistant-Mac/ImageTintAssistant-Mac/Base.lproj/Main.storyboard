@@ -788,14 +788,13 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v4D-jx-hUc">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMb-t5-Dfd">
                                 <rect key="frame" x="85" y="165" width="230" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="N4I-eE-2Iu"/>
-                                    <constraint firstAttribute="width" constant="230" id="nav-6e-F7F"/>
+                                    <constraint firstAttribute="height" constant="30" id="5kg-Gk-1Wn"/>
+                                    <constraint firstAttribute="width" constant="230" id="d4R-BN-gMj"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" bezelStyle="round" id="hg9-x5-DLx">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="5pT-c3-4Rs"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" bezelStyle="round" id="NbY-C5-tqD">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -804,22 +803,22 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="20" id="1vM-wC-vLY"/>
-                            <constraint firstItem="v4D-jx-hUc" firstAttribute="top" secondItem="sSi-c1-Xyv" secondAttribute="bottom" constant="5" id="2Wy-XJ-g5Z"/>
                             <constraint firstItem="4UA-k5-WPN" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="2lL-oc-TLw"/>
                             <constraint firstItem="Ok6-QY-AXW" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="3dK-uq-RVe"/>
+                            <constraint firstItem="tMb-t5-Dfd" firstAttribute="top" secondItem="sSi-c1-Xyv" secondAttribute="bottom" constant="5" id="ARo-Ed-4hG"/>
                             <constraint firstItem="3Sv-kY-MK8" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="HMO-9o-93N"/>
                             <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="4UA-k5-WPN" secondAttribute="bottom" id="JcV-tv-lSh"/>
                             <constraint firstItem="sSi-c1-Xyv" firstAttribute="top" secondItem="Ok6-QY-AXW" secondAttribute="bottom" constant="10" id="Ne6-ps-cTz"/>
                             <constraint firstItem="sSi-c1-Xyv" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Nn1-Rw-NXs"/>
                             <constraint firstItem="UIB-46-rQL" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Oqb-T7-uUi"/>
                             <constraint firstItem="Ok6-QY-AXW" firstAttribute="top" secondItem="jym-xN-iZU" secondAttribute="bottom" constant="10" id="R7B-x1-Atu"/>
-                            <constraint firstItem="UIB-46-rQL" firstAttribute="top" secondItem="v4D-jx-hUc" secondAttribute="bottom" constant="20" id="R8t-Pb-oDB"/>
+                            <constraint firstItem="tMb-t5-Dfd" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="a4L-In-rwr"/>
                             <constraint firstItem="jym-xN-iZU" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="dY9-gU-tSF"/>
                             <constraint firstItem="UsK-MA-rPP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="dwC-O3-WZq"/>
+                            <constraint firstItem="UIB-46-rQL" firstAttribute="top" secondItem="tMb-t5-Dfd" secondAttribute="bottom" constant="20" id="fbb-F2-nD9"/>
                             <constraint firstItem="UsK-MA-rPP" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="rqU-LK-g4g"/>
                             <constraint firstItem="4UA-k5-WPN" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="2" id="uZo-si-75v"/>
                             <constraint firstItem="jym-xN-iZU" firstAttribute="top" secondItem="3Sv-kY-MK8" secondAttribute="bottom" id="xCb-Bt-h6M"/>
-                            <constraint firstItem="v4D-jx-hUc" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="yls-Wc-KcS"/>
                             <constraint firstItem="3Sv-kY-MK8" firstAttribute="top" secondItem="UsK-MA-rPP" secondAttribute="bottom" constant="3" id="zAP-Ns-fRB"/>
                         </constraints>
                     </view>
@@ -829,7 +828,7 @@
                         <outlet property="loadingIndicator" destination="3Sv-kY-MK8" id="a29-ms-4pi"/>
                         <outlet property="mainColorButton" destination="4UA-k5-WPN" id="QXQ-iQ-Wx0"/>
                         <outlet property="originalImageButton" destination="UsK-MA-rPP" id="h8r-UC-wff"/>
-                        <outlet property="qrCodeContentTextField" destination="v4D-jx-hUc" id="6jV-SY-6uB"/>
+                        <outlet property="qrCodeContentTextField" destination="tMb-t5-Dfd" id="Bxe-an-2xV"/>
                         <outlet property="rgbView" destination="jym-xN-iZU" id="SQ9-09-FTe"/>
                         <outlet property="tintButton" destination="Ok6-QY-AXW" id="raY-8v-EWe"/>
                     </connections>
