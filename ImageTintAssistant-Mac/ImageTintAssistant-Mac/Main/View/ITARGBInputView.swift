@@ -68,6 +68,7 @@ class ITARGBInputView: NSView {
         textField.font = textFieldFont
         textField.textColor = NSColor.labelColor
         textField.placeholderAttributedString = NSAttributedString(string: "#DF7E1F", attributes: [NSAttributedString.Key.foregroundColor : RGBAColor(186, 186, 186, 0.5), NSAttributedString.Key.font : textFieldFont])
+        textField.toolTip = NSLocalizedString("Enter the hexadecimal RGB value, for example: DF7E1F", comment: "")
         return textField
     }()
     

@@ -6,13 +6,17 @@
   Copyright © 2019 BTStudio. All rights reserved.
 */
 
+"Click the button to tint" = "Click the button to tint";
 "Click to add icon"  = "Click to add icon";
 "Click to save tinted icon" = "Click to save tinted icon";
 "Click to save QR Code image" = "Click to save QR Code image";
 "Click to save round corner icon" = "Click to save round corner icon";
 
 "Enter the corner radius and press enter" = "Enter the corner radius and press enter";
+"Enter the corner radius and press enter to generate the round corner icon" = "Enter the corner radius and press enter to generate the round corner icon";
+"Enter the hexadecimal RGB value, for example: DF7E1F" = "Enter the hexadecimal RGB value, for example: DF7E1F";
 "Enter the text and press enter to generate the QR code" = "Enter the text and press enter to generate the QR code";
+"Enter the text and press enter to generate the QR code image" = "Enter the text and press enter to generate the QR code image";
 
 "Please enter the hex color value" = "Please enter the hex color value";
 "Please enter the number, the range 0 to 255" = "Please enter the number, the range 0 to 255";

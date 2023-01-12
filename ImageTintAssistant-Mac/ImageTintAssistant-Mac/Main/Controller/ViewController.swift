@@ -157,6 +157,7 @@ private extension ViewController {
         // 设置主色调按钮标题
         mainColorButton.title = mainColorDefaultTitle
         
+        tintButton.toolTip = NSLocalizedString("Click the button to tint", comment: "")
         // 着色按钮背景色初始化为黑色
         tintButton.wantsLayer = true
         tintButton.layer?.backgroundColor = NSColor.black.cgColor
@@ -164,14 +165,14 @@ private extension ViewController {
         // 设置输入框代理
         cornerRadiusTextField.delegate = self
         cornerRadiusTextField.placeholderString = NSLocalizedString("Enter the corner radius and press enter", comment: "")
-        cornerRadiusTextField.toolTip = NSLocalizedString("Enter the corner radius and press enter", comment: "")
+        cornerRadiusTextField.toolTip = NSLocalizedString("Enter the corner radius and press enter to generate the round corner icon", comment: "")
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         cornerRadiusTextField.formatter = formatter
         
         qrCodeContentTextField.delegate = self
         qrCodeContentTextField.placeholderString = NSLocalizedString("Enter the text and press enter to generate the QR code", comment: "")
-        qrCodeContentTextField.toolTip = NSLocalizedString("Enter the text and press enter to generate the QR code", comment: "")
+        qrCodeContentTextField.toolTip = NSLocalizedString("Enter the text and press enter to generate the QR code image", comment: "")
     }
 }
 
@@ -330,7 +331,7 @@ extension ViewController {
         panel.message = NSLocalizedString("Save the tinted icon", comment: "")
         panel.prompt = NSLocalizedString("Save", comment: "")
         panel.allowedFileTypes = ["png"]
-        panel.nameFieldStringValue = "tinted_image_\(red)_\(green)_\(blue)" // 默认保存文件名
+        panel.nameFieldStringValue = "image_tinted_r_\(red)_g_\(green)_b_\(blue)" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
                 return
@@ -367,7 +368,7 @@ extension ViewController {
         panel.message = NSLocalizedString("Save the round corner icon", comment: "")
         panel.prompt = NSLocalizedString("Save", comment: "")
         panel.allowedFileTypes = ["png"]
-        panel.nameFieldStringValue = "round_corner_image_\(cornerRadius)" // 默认保存文件名
+        panel.nameFieldStringValue = "image_round_corner_radius_\(cornerRadius)" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
                 return
@@ -390,19 +391,21 @@ extension ViewController {
     func saveQRCodeImageEvent() {
         guard qrCodeImage != nil else { return }
         
-        var dateStr = "xxx"
-        if #available(macOS 10.15, *) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyyMMddHHmmss"
-            dateStr = formatter.string(from: NSDate.now)
-        }
+//        var dateStr = "xxx"
+//        if #available(macOS 10.15, *) {
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyyMMddHHmmss"
+//            dateStr = formatter.string(from: NSDate.now)
+//        }
+        
+        let string = qrCodeContentTextField.stringValue
         
         // 文件保存面板
         let panel = NSSavePanel()
         panel.message = NSLocalizedString("Save the QR Code image", comment: "")
         panel.prompt = NSLocalizedString("Save", comment: "")
         panel.allowedFileTypes = ["png"]
-        panel.nameFieldStringValue = "QR_Code_image_\(dateStr)" // 默认保存文件名
+        panel.nameFieldStringValue = "image_QR_Code_\(string)" // 默认保存文件名
         panel.beginSheetModal(for: NSApp.mainWindow!) { (response: NSApplication.ModalResponse) in
             if response != .OK {
                 return
