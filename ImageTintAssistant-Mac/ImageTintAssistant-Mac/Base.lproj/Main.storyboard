@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -691,7 +691,7 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="181" y="240" width="440" height="520"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="400" height="525"/>
+                        <value key="minSize" type="size" width="420" height="525"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -714,14 +714,14 @@
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UsK-MA-rPP">
                                 <rect key="frame" x="140" y="370" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="K1W-im-ZWT"/>
-                                    <constraint firstAttribute="width" constant="120" id="ppc-QL-utW"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="add_icon" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Qcl-Pd-V10">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="K1W-im-ZWT"/>
+                                    <constraint firstAttribute="width" constant="120" id="ppc-QL-utW"/>
+                                </constraints>
                                 <connections>
                                     <action selector="addImageEvent:" target="XfG-lQ-9wD" id="zyV-x8-oHk"/>
                                 </connections>
@@ -746,36 +746,36 @@
                                     <constraint firstAttribute="height" constant="60" id="hmy-7z-4Ef"/>
                                 </constraints>
                             </customView>
-                            <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ok6-QY-AXW">
+                            <button imageHugsTitle="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ok6-QY-AXW">
                                 <rect key="frame" x="160" y="240" width="80" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="eH8-Ob-SMQ"/>
-                                    <constraint firstAttribute="width" constant="80" id="hOF-Vg-maV"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" title="Tint" bezelStyle="shadowlessSquare" image="palette" imagePosition="leading" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mki-e5-Uq7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="TintButtonContentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="eH8-Ob-SMQ"/>
+                                    <constraint firstAttribute="width" constant="80" id="hOF-Vg-maV"/>
+                                </constraints>
                                 <connections>
                                     <action selector="tintImageEvent:" target="XfG-lQ-9wD" id="t2b-TF-ZSb"/>
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="UIB-46-rQL">
                                 <rect key="frame" x="140" y="25" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="0ip-ud-86d"/>
-                                    <constraint firstAttribute="height" constant="120" id="5of-cK-QpX"/>
-                                </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nG4-jc-mlx">
                                     <behavior key="behavior" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="0ip-ud-86d"/>
+                                    <constraint firstAttribute="height" constant="120" id="5of-cK-QpX"/>
+                                </constraints>
                                 <connections>
                                     <action selector="saveImageEvent:" target="XfG-lQ-9wD" id="WXi-bO-PqA"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sSi-c1-Xyv">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sSi-c1-Xyv">
                                 <rect key="frame" x="85" y="200" width="230" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="DMe-NZ-7Pt"/>
@@ -788,7 +788,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMb-t5-Dfd">
+                            <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMb-t5-Dfd">
                                 <rect key="frame" x="85" y="165" width="230" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5kg-Gk-1Wn"/>

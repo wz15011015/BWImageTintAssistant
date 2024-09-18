@@ -15,13 +15,27 @@ let BColor = RGBColor(60, 116, 242)
 
 class ITARGBInputView: NSView {
     
-    // RGB:
+    // RGB :
     private lazy var rgbLabel: NSText = {
         let text = NSText()
         text.font = NSFont.systemFont(ofSize: 16)
-        text.string = "RGB:"
+        text.string = "RGB :"
         text.isEditable = false
         text.backgroundColor = NSColor.clear
+        text.alignment = NSTextAlignment.center
+        text.isVerticallyResizable = false
+        return text
+    }()
+    
+    // RGB(Hex) :
+    private lazy var rgbHexLabel: NSText = {
+        let text = NSText()
+        text.font = NSFont.systemFont(ofSize: 16)
+        text.string = "RGB(Hex) :"
+        text.isEditable = false
+        text.backgroundColor = NSColor.clear
+        text.alignment = NSTextAlignment.center
+        text.isVerticallyResizable = false
         return text
     }()
     
@@ -194,7 +208,12 @@ class ITARGBInputView: NSView {
             return
         }
         
-        if text.count == 2 {
+        if text == "0" { // 输入框内容全部删除时,RGB值置为(0, 0, 0)
+            red = 0
+            green = 0
+            blue = 0
+            
+        } else if text.count == 2 {
             let redHex = UInt(text, radix: 16) ?? 0 // 16进制字符串转整型
             red = Int(redHex)
             green = 0
@@ -283,6 +302,7 @@ extension ITARGBInputView {
         addSubview(redTextField)
         addSubview(blueTextField)
         addSubview(rgbLabel)
+        addSubview(rgbHexLabel)
         
         let width: CGFloat = frame.width
 //        let height: CGFloat = 100
@@ -302,9 +322,13 @@ extension ITARGBInputView {
         redTextField.frame = greenTextField.frame.offsetBy(dx: -(textFieldW + textFieldSpace), dy: 0)
         blueTextField.frame = greenTextField.frame.offsetBy(dx: (textFieldW + textFieldSpace), dy: 0)
         
-        // RGB:
-        let labelW: CGFloat = 50
+        // RGB :
+        let labelW: CGFloat = 54
         rgbLabel.frame = NSRect(x: redTextField.frame.minX - labelW, y: redTextField.frame.minY - 3, width: labelW, height: textFieldH)
+        
+        // RGB(Hex) :
+        let hexLabelW: CGFloat = 94
+        rgbHexLabel.frame = NSRect(x: rgbHexTextField.frame.minX - hexLabelW, y: rgbHexTextField.frame.minY - 3, width: hexLabelW, height: textFieldH)
     }
     
     /// 更新RGB Hex输入框显示
