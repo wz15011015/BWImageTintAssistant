@@ -155,6 +155,7 @@ private extension ViewController {
         originalImageButton.toolTip = NSLocalizedString("Click to add icon", comment: "")
         
         // 设置主色调按钮标题
+        mainColorButton.title = mainColorDefaultTitle
         mainColorButton.toolTip = mainColorDefaultTitle
         
         tintButton.title = NSLocalizedString("Tint", comment: "")
@@ -203,7 +204,7 @@ extension ViewController {
                 self.originalImage = image
                 self.originalImageButton.image = image
                 
-                self.mainColorButton.title = ""
+                self.mainColorButton.title = mainColorDefaultTitle
                 self.mainColorButton.image = NSImage(named: "color_picker")
                 self.mainColorButton.isEnabled = true
                 
