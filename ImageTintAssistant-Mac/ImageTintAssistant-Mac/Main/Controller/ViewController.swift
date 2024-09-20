@@ -25,7 +25,7 @@ class ViewController: NSViewController {
     @IBOutlet var mainColorButton: NSButton! // 获取图片主色调按钮
     @IBOutlet var loadingIndicator: NSProgressIndicator! // 加载指示器
     
-    @IBOutlet var rgbView: ITARGBInputView!; // 颜色值输入视图
+    @IBOutlet var rgbView: ITARGBInputView! // 颜色值输入视图
     @IBOutlet var tintButton: NSButton! // 着色按钮
     @IBOutlet var cornerRadiusTextField: NSTextField! // 圆角半径输入框
     @IBOutlet var qrCodeContentTextField: NSTextField! // 二维码内容输入框
@@ -155,8 +155,9 @@ private extension ViewController {
         originalImageButton.toolTip = NSLocalizedString("Click to add icon", comment: "")
         
         // 设置主色调按钮标题
-        mainColorButton.title = mainColorDefaultTitle
+        mainColorButton.toolTip = mainColorDefaultTitle
         
+        tintButton.title = NSLocalizedString("Tint", comment: "")
         tintButton.toolTip = NSLocalizedString("Click the button to tint", comment: "")
         // 着色按钮背景色初始化为黑色
         tintButton.wantsLayer = true
@@ -202,7 +203,8 @@ extension ViewController {
                 self.originalImage = image
                 self.originalImageButton.image = image
                 
-                self.mainColorButton.title = mainColorDefaultTitle
+                self.mainColorButton.title = ""
+                self.mainColorButton.image = NSImage(named: "color_picker")
                 self.mainColorButton.isEnabled = true
                 
             } else if response == .cancel { // 取消
@@ -228,6 +230,7 @@ extension ViewController {
                 let (r, g, b, a) = RGBAComponentsFromColor(mainColor)
                 
                 self.mainColorButton.title = "(\(r), \(g), \(b), \(a))"
+                self.mainColorButton.image = nil
                 self.mainColorButton.isEnabled = false
                 
                 self.loadingIndicator.stopAnimation(nil)

@@ -31,3 +31,4 @@
 "tap to get main color" = "点击以获取图标主色调";
 "The corner radius is too large" = "圆角半径太大";
 "The input value range needs to be: 0 to 255" = "输入值范围需为: 0~255";
+"Tint" = "着色";
