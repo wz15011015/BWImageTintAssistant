@@ -235,6 +235,17 @@ extension ViewController {
                 self.mainColorButton.isEnabled = false
                 
                 self.loadingIndicator.stopAnimation(nil)
+                
+                // 更新RGB值
+                self.red = r
+                self.green = g
+                self.blue = b
+                // 更新rgbView
+                self.rgbView.updateUIWithRGB(self.red, self.green, self.blue)
+                // 更新着色按钮背景颜色
+                let tintColor = RGBColor(CGFloat(self.red), CGFloat(self.green), CGFloat(self.blue)) // 着色颜色
+                self.tintButton.wantsLayer = true
+                self.tintButton.layer?.backgroundColor = tintColor.cgColor
             }
         }
     }

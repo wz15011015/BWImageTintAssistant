@@ -343,6 +343,19 @@ extension ITARGBInputView {
         greenTextField.stringValue = green ?? ""
         blueTextField.stringValue = blue ?? ""
     }
+    
+    /// 根据RGB值更新UI
+    /// - Parameters:
+    ///   - red: R
+    ///   - green: G
+    ///   - blue: B
+    func updateUIWithRGB(_ red: Int, _ green: Int, _ blue: Int) {
+        // 回到主线程更新UI
+        DispatchQueue.main.async {
+            self.updateRGBTextField("\(red)", "\(green)", "\(blue)")
+            self.updateRGBHexTextField(red, green, blue)
+        }
+    }
 }
 
 
