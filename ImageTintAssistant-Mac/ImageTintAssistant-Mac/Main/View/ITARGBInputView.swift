@@ -166,11 +166,13 @@ class ITARGBInputView: NSView {
             }
             // R/G/B值输入时,自动跳转至下一输入框
             if !deleting && isRGBValueInputDone(string: string) {
-                if textField == redTextField {
+                if redTextField.stringValue.isEmpty {
+                    redTextField.becomeFirstResponder()
+                } else if greenTextField.stringValue.isEmpty {
                     greenTextField.becomeFirstResponder()
-                } else if textField == greenTextField {
+                } else if blueTextField.stringValue.isEmpty {
                     blueTextField.becomeFirstResponder()
-                } else if textField == blueTextField {
+                } else {
                     window?.makeFirstResponder(nil) // 取消响应者
                 }
             }
@@ -255,14 +257,24 @@ class ITARGBInputView: NSView {
     /// R/G/B值是否输入完成
     /// - Parameter string: 输入框内容
     func isRGBValueInputDone(string: String) -> Bool {
-        if string.count == 2 { // 输入完2个数字后,若第一个数字大于2,自动跳转至下一输入框
-            let index = string.index(string.startIndex, offsetBy: 1)
-            let firstChar = string[..<index]
+        // 1.输入完2个数字后:
+        // - 若第一个数字大于2,则认为输入完成;
+        // - 若第一个数字等于2,第二个数字大于5,则认为输入完成;
+        // 2.输入完3个数字后,则输入完成
+        if string.count == 2 {
+            let index1 = string.index(string.startIndex, offsetBy: 1)
+            let index2 = string.index(string.startIndex, offsetBy: 2)
+            let firstChar = string[..<index1]
+            let secondChar = string[index1..<index2]
+            
             let firstNum = Int(firstChar) ?? 0
+            let secondNum = Int(secondChar) ?? 0
             if firstNum > 2 {
                 return true
+            } else if firstNum == 2 && secondNum > 5 {
+                return true
             }
-        } else if string.count == 3 { // 输入完3个数字后,自动跳转至下一输入框
+        } else if string.count == 3 {
             return true
         }
         return false
