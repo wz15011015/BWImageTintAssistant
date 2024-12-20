@@ -136,7 +136,19 @@ class ITARGBInputView: NSView {
         let string = textField.stringValue
         let str = string.isEmpty ? "0" : string // 当删除所有字符时,把值看做为0
         
-        // 1. 解析RGB值
+        // 1. 限制输入字符个数
+        // - 十进制RGB值只能输入3个字符
+        // - 十六进制RGB值只能输入6个字符
+        let maxCount = textField == rgbHexTextField ? 6 : 3
+        if str.count > maxCount {
+            let index1 = str.index(str.startIndex, offsetBy: 0)
+            let index2 = str.index(str.startIndex, offsetBy: maxCount)
+            let newStr = str[index1..<index2]
+            textField.stringValue = String(newStr)
+            return
+        }
+        
+        // 2. 解析RGB值
         if textField == rgbHexTextField {
             resolveRGBFrom(hexString: str)
         } else {
@@ -178,7 +190,7 @@ class ITARGBInputView: NSView {
             }
         }
         
-        // 2. 设置输入框文字
+        // 3. 设置输入框文字
         if textField == rgbHexTextField {
             if string.isEmpty { // 删除 RGB Hex输入框中的全部字符后,让RGB输入框显示占位符
                 updateRGBTextField(nil, nil, nil)
@@ -192,7 +204,7 @@ class ITARGBInputView: NSView {
         // 用过后即可置为false
         deleting = false
         
-        // 3. 执行回调
+        // 4. 执行回调
         let color = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         rgbColorHandler?(color, red, green, blue)
     }
