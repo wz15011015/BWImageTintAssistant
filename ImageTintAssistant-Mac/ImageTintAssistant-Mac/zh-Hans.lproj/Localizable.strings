@@ -6,9 +6,9 @@
   Copyright © 2019 BTStudio. All rights reserved.
 */
 
-"Click the button to tint" = "点击按钮进行着色";
+"Click the button to tint" = "点击按钮进行调色";
 "Click to add icon"  = "点击以添加图标";
-"Click to save tinted icon" = "点击以保存着色图标";
+"Click to save tinted icon" = "点击以保存调色图标";
 "Click to save QR Code image" = "点击以保存二维码图片";
 "Click to save round corner icon" = "点击以保存圆角图标";
 
@@ -20,15 +20,15 @@
 
 "Please enter the hex color value" = "请输入十六进制颜色值";
 "Please enter the number, the range 0 to 255" = "请输入数字，范围0~255";
-"Please select the icon to be tint" = "请选择要着色的图标";
+"Please select the icon to be tint" = "请选择要调色的图标";
 
 "Save"   = "保存";
 "Save the QR Code image" = "保存二维码图片";
 "Save the round corner icon"  = "保存圆角图标";
-"Save the tinted icon" = "保存着色后的图标";
+"Save the tinted icon" = "保存调色后的图标";
 "Select" = "选择";
 
 "tap to get main color" = "点击以获取图标主色调";
 "The corner radius is too large" = "圆角半径太大";
 "The input value range needs to be: 0 to 255" = "输入值范围需为: 0~255";
-"Tint" = "着色";
+"Tint" = "调色";

@@ -2,8 +2,8 @@
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "1UK-8n-QPP"; */
 "1UK-8n-QPP.title" = "Customize Toolbar…";
 
-/* Class = "NSMenuItem"; title = "图标着色助手"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "图标着色助手";
+/* Class = "NSMenuItem"; title = "图标调色助手"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "图标调色助手";
 
 /* Class = "NSMenu"; title = "Find"; ObjectID = "1b7-l0-nxx"; */
 "1b7-l0-nxx.title" = "Find";
@@ -36,7 +36,7 @@
 "4J7-dP-txa.title" = "Enter Full Screen";
 
 /* Class = "NSMenuItem"; title = "Quit ImageTintAssistant-Mac"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "退出图标着色助手";
+"4sb-4s-VLi.title" = "退出图标调色助手";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "Edit";
@@ -44,8 +44,8 @@
 /* Class = "NSMenuItem"; title = "Copy Style"; ObjectID = "5Vv-lz-BsD"; */
 "5Vv-lz-BsD.title" = "Copy Style";
 
-/* Class = "NSMenuItem"; title = "关于图标着色助手"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "关于图标着色助手";
+/* Class = "NSMenuItem"; title = "关于图标调色助手"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "关于图标调色助手";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Redo";
@@ -84,7 +84,7 @@
 "F2S-fz-NVQ.title" = "Help";
 
 /* Class = "NSMenuItem"; title = "ImageTintAssistant-Mac Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "图标着色助手帮助";
+"FKE-Sm-Kum.title" = "图标调色助手帮助";
 
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "Fal-I4-PZk"; */
 "Fal-I4-PZk.title" = "Text";
@@ -125,8 +125,8 @@
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Open…";
 
-/* Class = "NSWindow"; title = "图标着色助手"; ObjectID = "IQv-IB-iLA"; */
-"IQv-IB-iLA.title" = "图标着色助手";
+/* Class = "NSWindow"; title = "图标调色助手"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "图标调色助手";
 
 /* Class = "NSMenuItem"; title = "Justify"; ObjectID = "J5U-5w-g23"; */
 "J5U-5w-g23.title" = "Justify";
@@ -168,7 +168,7 @@
 "OaQ-X3-Vso.title" = "Baseline";
 
 /* Class = "NSMenuItem"; title = "Hide ImageTintAssistant-Mac"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "隐藏图标着色助手";
+"Olw-nP-bQN.title" = "隐藏图标调色助手";
 
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "OwM-mh-QMV"; */
 "OwM-mh-QMV.title" = "Find Previous";
@@ -359,8 +359,8 @@
 /* Class = "NSMenu"; title = "Kern"; ObjectID = "tlD-Oa-oAM"; */
 "tlD-Oa-oAM.title" = "Kern";
 
-/* Class = "NSMenu"; title = "图标着色助手"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "图标着色助手";
+/* Class = "NSMenu"; title = "图标调色助手"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "图标调色助手";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "Cut";

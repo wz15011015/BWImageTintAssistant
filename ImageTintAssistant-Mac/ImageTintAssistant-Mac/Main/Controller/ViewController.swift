@@ -11,7 +11,7 @@ import CoreImage
 
 /// 编辑图片的状态
 enum EditedImageState {
-    case tint      // 着色状态
+    case tint      // 调色状态
     case corner    // 圆角状态
     case qrcode    // 二维码状态
 }
@@ -26,17 +26,17 @@ class ViewController: NSViewController {
     @IBOutlet var loadingIndicator: NSProgressIndicator! // 加载指示器
     
     @IBOutlet var rgbView: ITARGBInputView! // 颜色值输入视图
-    @IBOutlet var tintButton: NSButton! // 着色按钮
+    @IBOutlet var tintButton: NSButton! // 调色按钮
     @IBOutlet var cornerRadiusTextField: NSTextField! // 圆角半径输入框
     @IBOutlet var qrCodeContentTextField: NSTextField! // 二维码内容输入框
     @IBOutlet var editedImageButton: NSButton! // 编辑后的图片
     
     private var originalImage: NSImage? // 原图片
-    private var tintImage: NSImage? // 着色图片
+    private var tintImage: NSImage? // 调色图片
     private var cornerRadiusImage: NSImage? // 圆角图片
     private var qrCodeImage: NSImage? // 二维码图片
     
-    // 着色颜色RGB值
+    // 调色颜色RGB值
     private var red: Int = 0
     private var green: Int = 0
     private var blue: Int = 0
@@ -62,7 +62,7 @@ class ViewController: NSViewController {
             self.green = green
             self.blue = blue
 
-            // 着色颜色
+            // 调色颜色
             let tintColor = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
             
             // 更新按钮背景颜色
@@ -160,7 +160,7 @@ private extension ViewController {
         
         tintButton.title = NSLocalizedString("Tint", comment: "")
         tintButton.toolTip = NSLocalizedString("Click the button to tint", comment: "")
-        // 着色按钮背景色初始化为黑色
+        // 调色按钮背景色初始化为黑色
         tintButton.wantsLayer = true
         tintButton.layer?.backgroundColor = NSColor.black.cgColor
         
@@ -183,7 +183,7 @@ private extension ViewController {
 
 extension ViewController {
     
-    /// 添加要着色图片事件
+    /// 添加要调色图片事件
     @IBAction func addImageEvent(_ sender: NSButton) {
         // 文件打开面板
         let panel = NSOpenPanel()
@@ -242,28 +242,28 @@ extension ViewController {
                 self.blue = b
                 // 更新rgbView
                 self.rgbView.updateUIWithRGB(self.red, self.green, self.blue)
-                // 更新着色按钮背景颜色
-                let tintColor = RGBColor(CGFloat(self.red), CGFloat(self.green), CGFloat(self.blue)) // 着色颜色
+                // 更新调色按钮背景颜色
+                let tintColor = RGBColor(CGFloat(self.red), CGFloat(self.green), CGFloat(self.blue)) // 调色颜色
                 self.tintButton.wantsLayer = true
                 self.tintButton.layer?.backgroundColor = tintColor.cgColor
             }
         }
     }
     
-    /// 着色事件
+    /// 调色事件
     @IBAction func tintImageEvent(_ sender: NSButton) {
         guard let originalImage = originalImage else { return }
         
-        // 设置为着色状态
+        // 设置为调色状态
         editedImageState = .tint
         
-        // 着色颜色
+        // 调色颜色
         let tintColor = RGBColor(CGFloat(red), CGFloat(green), CGFloat(blue))
         
-        // 图片着色
+        // 图片调色
         tintImage = NSImage(sourceImage: originalImage, tintColor: tintColor)
         
-        // 显示着色图片
+        // 显示调色图片
         editedImageButton.image = tintImage
         
         // 设置点击时的图片
@@ -274,7 +274,7 @@ extension ViewController {
         editedImageButton.toolTip = NSLocalizedString("Click to save tinted icon", comment: "")
     }
     
-    /// 导出着色图片事件
+    /// 导出调色图片事件
     @IBAction func saveImageEvent(_ sender: NSButton) {
         switch editedImageState {
             case .corner:
@@ -337,7 +337,7 @@ extension ViewController {
         editedImageButton.toolTip = NSLocalizedString("Click to save QR Code image", comment: "")
     }
     
-    /// 导出着色图片事件
+    /// 导出调色图片事件
     func saveTintedImageEvent() {
         guard tintImage != nil else { return }
         
