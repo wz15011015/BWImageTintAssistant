@@ -21,21 +21,42 @@ class ITARGBInputView: NSView {
         text.font = NSFont.systemFont(ofSize: 16)
         text.string = "RGB :"
         text.isEditable = false
+        text.isSelectable = false
         text.backgroundColor = NSColor.clear
         text.alignment = NSTextAlignment.center
         text.isVerticallyResizable = false
         return text
     }()
     
-    // RGB(Hex) :
-    private lazy var rgbHexLabel: NSText = {
-        let text = NSText()
+//    // RGB(Hex) :
+//    private lazy var rgbHexLabel: NSText = {
+//        let text = NSText()
+//        text.font = NSFont.systemFont(ofSize: 16)
+//        text.string = "RGB(Hex) :"
+//        text.isEditable = false
+//        text.backgroundColor = NSColor.clear
+//        text.alignment = NSTextAlignment.center
+//        text.isVerticallyResizable = false
+//        text.isRichText = true
+//        return text
+//    }()
+    
+    // RGB_Hex :
+    private lazy var rgbHexLabel: NSTextField = {
+        let str = "RGB_Hex :"
+        let attrStr = NSMutableAttributedString(string: str)
+        attrStr.addAttribute(.foregroundColor, value: NSColor.white, range: NSMakeRange(0, str.count))
+        attrStr.addAttribute(.font, value: NSFont.systemFont(ofSize: 10), range: NSMakeRange(3, 4))
+        attrStr.addAttribute(.foregroundColor, value: NSColor.white, range: NSMakeRange(3, 4))
+        
+        let text = NSTextField()
         text.font = NSFont.systemFont(ofSize: 16)
-        text.string = "RGB(Hex) :"
+        text.isBordered = false
+        text.isBezeled = false
         text.isEditable = false
+        text.isSelectable = false
         text.backgroundColor = NSColor.clear
-        text.alignment = NSTextAlignment.center
-        text.isVerticallyResizable = false
+        text.attributedStringValue = attrStr
         return text
     }()
     
@@ -351,7 +372,7 @@ extension ITARGBInputView {
         rgbLabel.frame = NSRect(x: redTextField.frame.minX - labelW, y: redTextField.frame.minY - 3, width: labelW, height: textFieldH)
         
         // RGB(Hex) :
-        let hexLabelW: CGFloat = 94
+        let hexLabelW: CGFloat = 74
         rgbHexLabel.frame = NSRect(x: rgbHexTextField.frame.minX - hexLabelW, y: rgbHexTextField.frame.minY - 3, width: hexLabelW, height: textFieldH)
     }
     
